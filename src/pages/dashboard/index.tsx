@@ -15,6 +15,7 @@ import { useToast } from "@/components/ui/use-toast";
 import useEnterSubmit from "@/lib/hooks/use-enter-submit";
 import Image from "next/image";
 import { Textarea } from "@/components/ui/textarea";
+import { Database } from "@/lib/types/supabase";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // Create authenticated Supabase Client
@@ -43,7 +44,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 const Dashboard = (
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
-  const spb = useSupabaseClient();
+  const spb = useSupabaseClient<Database>();
   const router = useRouter();
 
   const [pattern, setPattern] = useState<string>("");
@@ -78,6 +79,15 @@ const Dashboard = (
         reader.readAsDataURL(file);
       }
     }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const { error } = await spb.from("generations").insert({
+      prompt,
+      created_at: new Date().toISOString(),
+    });
   };
 
   return (

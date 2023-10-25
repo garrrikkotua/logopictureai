@@ -5,6 +5,7 @@ import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
+import { Database } from "@/lib/types/supabase";
 
 const queryClient = new QueryClient();
 
@@ -15,7 +16,7 @@ export default function App({
   initialSession: Session;
 }>) {
   // Create a new supabase browser client on every first render.
-  const [supabaseClient] = useState(() => createPagesBrowserClient());
+  const [supabaseClient] = useState(() => createPagesBrowserClient<Database>());
 
   return (
     <QueryClientProvider client={queryClient}>
