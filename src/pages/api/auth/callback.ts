@@ -9,7 +9,7 @@ const handler: NextApiHandler = async (req, res) => {
     await supabase.auth.exchangeCodeForSession(String(code))
   }
 
-  res.redirect('/dashboard')
+  res.redirect(307, '/dashboard')
 }
 
 export default handler
