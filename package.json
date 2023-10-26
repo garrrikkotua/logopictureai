@@ -14,6 +14,7 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-scroll-area": "^1.0.5",
+    "@radix-ui/react-slider": "^1.1.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
     "@supabase/auth-helpers-nextjs": "^0.8.1",
@@ -28,6 +29,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.47.0",
     "replicate": "^0.20.1",
+    "resend": "^1.1.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4"

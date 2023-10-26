@@ -1,6 +1,6 @@
 import { createPagesServerClient } from "@supabase/auth-helpers-nextjs";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import { DashboardLayout } from "@/layouts/dashboard.layout";
 import {
@@ -16,6 +16,8 @@ import useEnterSubmit from "@/lib/hooks/use-enter-submit";
 import Image from "next/image";
 import { Textarea } from "@/components/ui/textarea";
 import { Database } from "@/lib/types/supabase";
+import { Slider } from "@/components/ui/slider";
+import { Loader2 } from "lucide-react";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // Create authenticated Supabase Client
@@ -46,10 +48,13 @@ const Dashboard = (
 ) => {
   const spb = useSupabaseClient<Database>();
   const router = useRouter();
+  const user = useUser();
 
   const [pattern, setPattern] = useState<string>("");
   const [openPopover, setOpenPopover] = useState<boolean>(false);
   const [prompt, setPrompt] = useState<string>("");
+  const [numberOfPictures, setNumberOfPictures] = useState<number>(3);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { formRef, onKeyDown } = useEnterSubmit();
 
@@ -84,10 +89,58 @@ const Dashboard = (
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { error } = await spb.from("generations").insert({
-      prompt,
-      created_at: new Date().toISOString(),
-    });
+    setIsLoading(true);
+
+    try {
+      const { data, error } = await spb
+        .from("generations")
+        .insert({
+          prompt,
+          created_at: new Date().toISOString(),
+          number_of_pictures: numberOfPictures,
+          user_id: user?.id as string,
+        })
+        .select("id");
+
+      if (error) {
+        toast({
+          title: "Error",
+          description: error.message,
+          className: "bg-red-500",
+        });
+      } else {
+        // starting image generation
+
+        await fetch("/api/generate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            generationId: data?.[0].id,
+            pattern,
+            prompt,
+            numberOfPictures,
+            email: user?.email,
+          }),
+        });
+
+        toast({
+          title: "Success",
+          description:
+            "Your logo pictures are being generated. You will receive an email with pictures shortly.",
+          className: "bg-green-500",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again later.",
+        className: "bg-red-500",
+      });
+    }
+
+    setIsLoading(false);
   };
 
   return (
@@ -97,7 +150,7 @@ const Dashboard = (
           <Image src={pattern} alt="Selected Logo" width={400} height={400} />
         )}
       </div>
-      <form ref={formRef}>
+      <form ref={formRef} onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4">
           <h1 className="text-xl">Generate Logo Art</h1>
           <div>
@@ -107,6 +160,7 @@ const Dashboard = (
               name="patternUrl"
               value={pattern}
               readOnly
+              required
             />
             <Popover>
               <PopoverTrigger asChild>
@@ -140,10 +194,32 @@ const Dashboard = (
               />
             </div>
           </div>
+          <div>
+            <p className="mb-2">3. Number of images to generate (variations)</p>
+            <div className="mt-4 flex flex-row gap-4">
+              <Slider
+                defaultValue={[5]}
+                max={10}
+                step={1}
+                min={1}
+                value={[numberOfPictures]}
+                onValueChange={(value) => setNumberOfPictures(value[0])}
+              />
+              {numberOfPictures}
+            </div>
+            <p className="mt-4">Note: one picture takes one credit</p>
+          </div>
         </div>
-        <Button className="mt-4" type="submit" variant="default">
-          Generate logo picture
-        </Button>
+        {isLoading ? (
+          <Button className="mt-4" disabled variant="default">
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Please wait
+          </Button>
+        ) : (
+          <Button className="mt-4" type="submit" variant="default">
+            Generate logo picture
+          </Button>
+        )}
       </form>
     </div>
   );

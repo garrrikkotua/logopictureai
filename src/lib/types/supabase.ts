@@ -13,20 +13,26 @@ export interface Database {
         Row: {
           created_at: string
           id: string
+          number_of_pictures: number
           prompt: string | null
-          user_id: string | null
+          status: Database["public"]["Enums"]["GENERATION_STATUS"]
+          user_id: string
         }
         Insert: {
           created_at: string
           id?: string
+          number_of_pictures: number
           prompt?: string | null
-          user_id?: string | null
+          status?: Database["public"]["Enums"]["GENERATION_STATUS"]
+          user_id: string
         }
         Update: {
           created_at?: string
           id?: string
+          number_of_pictures?: number
           prompt?: string | null
-          user_id?: string | null
+          status?: Database["public"]["Enums"]["GENERATION_STATUS"]
+          user_id?: string
         }
         Relationships: [
           {
@@ -45,7 +51,7 @@ export interface Database {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      GENERATION_STATUS: "pending" | "completed"
     }
     CompositeTypes: {
       [_ in never]: never

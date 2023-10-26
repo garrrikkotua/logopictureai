@@ -23,6 +23,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
     const { data, error } = await spb.auth.signInWithOtp({
       email,
+      options: {
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/callback`,
+      },
     });
     setError(error?.message ?? null);
     setIsLoading(false);
