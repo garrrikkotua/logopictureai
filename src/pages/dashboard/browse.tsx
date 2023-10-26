@@ -3,7 +3,7 @@ import { DashboardLayout } from "@/layouts/dashboard.layout";
 const Browse = () => {
   return (
     <div>
-      <h1>Browse</h1>
+      <h1 className="text-xl">Browse</h1>
     </div>
   );
 };

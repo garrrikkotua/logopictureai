@@ -1,7 +1,6 @@
 import { createPagesServerClient } from "@supabase/auth-helpers-nextjs";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
-import { useRouter } from "next/router";
 import { DashboardLayout } from "@/layouts/dashboard.layout";
 import {
   Popover,
@@ -47,7 +46,6 @@ const Dashboard = (
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
   const spb = useSupabaseClient<Database>();
-  const router = useRouter();
   const user = useUser();
 
   const [pattern, setPattern] = useState<string>("");
@@ -56,7 +54,7 @@ const Dashboard = (
   const [numberOfPictures, setNumberOfPictures] = useState<number>(3);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { formRef, onKeyDown } = useEnterSubmit();
+  const { formRef } = useEnterSubmit();
 
   const { toast } = useToast();
 
@@ -92,6 +90,22 @@ const Dashboard = (
     setIsLoading(true);
 
     try {
+      const { data: creditsData } = await spb
+        .from("credits")
+        .select("credits")
+        .eq("user_id", user?.id as string)
+        .single();
+
+      if (!creditsData?.credits || creditsData?.credits < numberOfPictures) {
+        toast({
+          title: "Insufficient credits",
+          description: "Please purchase more credits.",
+          className: "bg-red-500",
+        });
+        setIsLoading(false);
+        return;
+      }
+
       const { data, error } = await spb
         .from("generations")
         .insert({
@@ -122,6 +136,7 @@ const Dashboard = (
             prompt,
             numberOfPictures,
             email: user?.email,
+            userId: user?.id,
           }),
         });
 
@@ -217,7 +232,7 @@ const Dashboard = (
           </Button>
         ) : (
           <Button className="mt-4" type="submit" variant="default">
-            Generate logo picture
+            Generate
           </Button>
         )}
       </form>

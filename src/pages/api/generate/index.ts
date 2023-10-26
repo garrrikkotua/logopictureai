@@ -1,6 +1,13 @@
 import Replicate from "replicate";
 import { NextApiRequest, NextApiResponse } from 'next';
 import { NextApiHandler } from 'next'
+import { createClient } from "@supabase/supabase-js";
+import {Database} from "@/lib/types/supabase";
+
+const spb = createClient<Database>(
+  process.env.NEXT_PUBLIC_SUPABASE_URL as string,
+  process.env.SUPABASE_SERVICE_KEY as string
+);
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
@@ -14,8 +21,9 @@ const createUrl = (generationId: string, email: string) => {
 
 const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
-    const { pattern, prompt, generationId, numberOfPictures, email } = req.body;
+    const { pattern, prompt, generationId, numberOfPictures, email, userId} = req.body;
     try {
+      await spb.rpc('increment_credits', {row_id: userId, num: -(numberOfPictures as number)})
       const prediction = await replicate.predictions.create({
         version: "75d51a73fce3c00de31ed9ab4358c73e8fc0f627dc8ce975818e653317cb919b",
         input: {

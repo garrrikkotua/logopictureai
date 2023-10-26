@@ -7,7 +7,7 @@ export const DashboardLayout = ({
 }) => {
   return (
     <div className="flex flex-row">
-      <Sidebar />
+      <Sidebar className="w-80" />
       <div className="flex flex-col w-full py-8 px-8">{children}</div>
     </div>
   );

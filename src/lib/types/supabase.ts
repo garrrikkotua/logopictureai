@@ -9,6 +9,28 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      credits: {
+        Row: {
+          credits: number
+          user_id: string
+        }
+        Insert: {
+          credits?: number
+          user_id: string
+        }
+        Update: {
+          credits?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "credits_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       generations: {
         Row: {
           created_at: string
@@ -48,7 +70,13 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_credits: {
+        Args: {
+          num: number
+          row_id: string
+        }
+        Returns: number
+      }
     }
     Enums: {
       GENERATION_STATUS: "pending" | "completed"
