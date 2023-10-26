@@ -231,9 +231,7 @@ const Dashboard = (
             Please wait
           </Button>
         ) : (
-          <Button className="mt-4" type="submit" variant="default">
-            Generate
-          </Button>
+          <Button className="mt-4" type="submit" variant="default"></Button>
         )}
       </form>
     </div>
