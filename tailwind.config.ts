@@ -30,6 +30,9 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      backgroundImage: () => ({
+        "main-grad": "linear-gradient(180deg, #88C2EC 0%, #9EECD5 48.96%, #CFF1BA 100%)",
+      }),
     },
   },
   plugins: [require("tailwindcss-animate")],

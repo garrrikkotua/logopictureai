@@ -18,10 +18,10 @@ export default function LogoPicker({
   return (
     <div className="w-full overflow-auto md:max-w-xl">
       <div className="p-4">
-        <p className="py-2 font-display text-xl text-gray-700">
+        {/* <p className="py-2 font-display text-xl text-gray-700">
           Existing logos
-        </p>
-        <div className="grid grid-cols-4 gap-3">
+        </p> */}
+        {/* <div className="grid grid-cols-4 gap-3">
           {patterns &&
             patterns.length > 0 &&
             patterns?.map((p) => (
@@ -43,9 +43,8 @@ export default function LogoPicker({
                 />
               </button>
             ))}
-        </div>
+        </div> */}
       </div>
-      <div className="border-t border-gray-300" />
       <div className="flex items-center justify-between p-4">
         <div className="flex-1">
           <p className="font-display text-xl text-gray-700">Upload new logo</p>

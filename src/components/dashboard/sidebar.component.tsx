@@ -66,13 +66,6 @@ export function Sidebar({ className }: SidebarProps) {
               <Link href="/dashboard">Generate</Link>
             </Button>
             <Button
-              variant={isActive("/dashboard/browse") ? "secondary" : "ghost"}
-              className="w-full justify-start"
-              asChild
-            >
-              <Link href="/dashboard/browse">Browse</Link>
-            </Button>
-            <Button
               variant={isActive("/dashboard/settings") ? "secondary" : "ghost"}
               className="w-full justify-start"
               asChild
@@ -87,6 +80,7 @@ export function Sidebar({ className }: SidebarProps) {
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
             Credits: {isLoading ? "..." : credits}
           </h2>
+          <Button variant="link">Buy more credits</Button>
         </div>
       </div>
     </div>

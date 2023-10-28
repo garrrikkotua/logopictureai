@@ -17,6 +17,46 @@ import { Textarea } from "@/components/ui/textarea";
 import { Database } from "@/lib/types/supabase";
 import { Slider } from "@/components/ui/slider";
 import { Loader2 } from "lucide-react";
+// @ts-ignore
+import promptmaker from "promptmaker";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { useMemo } from "react";
+
+const prompts = {
+  "Mystic Forest":
+    "A mystical forest with towering trees, vibrant foliage, and a serene stream flowing through. The scene is bathed in soft, dappled sunlight filtering through the dense canopy above. No human presence is visible.",
+  "Mountain Majesty":
+    "A majestic mountain landscape under a clear sky. Snow-capped peaks rise in the distance, while a lush valley spreads out below. The scene is devoid of any human elements, focusing solely on the raw beauty of nature.",
+  "Desert Dunes":
+    "An expansive desert landscape with rolling sand dunes under a blazing sun. The scene is devoid of any vegetation or human presence, emphasizing the harsh yet beautiful solitude of the desert.",
+  "Ocean Calm":
+    "A calm ocean scene with gentle waves lapping against a sandy beach. The horizon stretches out infinitely, meeting a clear sky. The scene is devoid of any human elements, focusing on the tranquil beauty of the seascape.",
+  "City Nights":
+    "A bustling cityscape under the cover of night. Bright neon lights reflect off wet streets, while towering skyscrapers reach for the starless sky. The scene is devoid of any natural elements, focusing on the vibrant life of the urban jungle.",
+  "Winter Wonderland":
+    "A serene winter landscape blanketed in fresh snow. Bare trees stand against the stark white, their branches heavy with frost. The scene is devoid of any human elements, focusing on the quiet beauty of the winter season.",
+  "Spring Awakening":
+    "A vibrant spring landscape with blooming flowers and lush greenery. The scene is filled with the sounds of chirping birds and a gentle breeze rustling the leaves. No human presence is visible.",
+  "Summer Solstice":
+    "A bright summer landscape with a golden sun shining down on a field of sunflowers. The scene is filled with the buzz of insects and the scent of fresh earth. No human presence is visible.",
+  "Autumn Harvest":
+    "A rich autumn landscape with trees ablaze in hues of red and gold. The scene is filled with the crisp scent of fallen leaves and the sound of them crunching underfoot. No human presence is visible.",
+  "Tropical Paradise":
+    "A lush tropical landscape with palm trees swaying in the breeze and crystal clear waters lapping at the shore. The scene is filled with the sound of distant waves and the scent of salt in the air. No human presence is visible.",
+  "Rainforest Retreat":
+    "A dense rainforest landscape with towering trees and a diverse array of flora and fauna. The scene is filled with the sound of distant waterfalls and the calls of exotic birds. No human presence is visible.",
+  "Arctic Adventure":
+    "A stark arctic landscape with snow-covered plains stretching out to the horizon. The scene is filled with the sound of the wind whistling through the icy expanse and the distant call of a lone wolf. No human presence is visible.",
+  "Fiery Fervor":
+    "A captivating scene of a roaring bonfire under the starlit sky. The crackling flames dance passionately, casting a warm glow on the surrounding area. The scene is filled with the comforting scent of burning wood and the mesmerizing sound of fire. No human presence is visible.",
+};
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // Create authenticated Supabase Client
@@ -53,10 +93,14 @@ const Dashboard = (
   const [prompt, setPrompt] = useState<string>("");
   const [numberOfPictures, setNumberOfPictures] = useState<number>(3);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [randomPrompt, setRandomPrompt] = useState<string>(promptmaker());
 
   const { formRef } = useEnterSubmit();
 
   const { toast } = useToast();
+
+  const placeholder = useMemo(() => promptmaker(), []);
 
   const onChangePicture = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -167,27 +211,29 @@ const Dashboard = (
       </div>
       <form ref={formRef} onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4">
-          <h1 className="text-xl">Generate Logo Art</h1>
+          <h1 className="text-xl">Generate Logo Picture</h1>
           <div>
-            <p className="mb-2">1. Upload a logo</p>
-            <input
-              className="hidden"
-              name="patternUrl"
-              value={pattern}
-              readOnly
-              required
-            />
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button variant="secondary">Select or Upload</Button>
-              </PopoverTrigger>
-              <PopoverContent className="relative left-14 top-0 w-[600px]">
-                <LogoPicker
-                  setPattern={setPattern}
-                  setOpenPopover={setOpenPopover}
-                />
-              </PopoverContent>
-            </Popover>
+            <div className="flex flex-row gap-2 items-center">
+              <p className="mb-2">1.</p>
+              <input
+                className="hidden"
+                name="patternUrl"
+                value={pattern}
+                readOnly
+                required
+              />
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="secondary">Upload a logo</Button>
+                </PopoverTrigger>
+                <PopoverContent className="relative left-14 top-0 w-[600px]">
+                  <LogoPicker
+                    setPattern={setPattern}
+                    setOpenPopover={setOpenPopover}
+                  />
+                </PopoverContent>
+              </Popover>
+            </div>
             <input
               id="patternFile"
               name="patternFile"
@@ -201,12 +247,70 @@ const Dashboard = (
             <p className="mb-2">2. Image prompt</p>
             <div className="flex flex-row gap-2">
               <Textarea
-                placeholder="Your prompt goes here"
+                placeholder={placeholder}
                 className="w-80"
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 required
               />
+              <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                <SheetTrigger>
+                  <Button variant="secondary" type="button">
+                    Pick a style
+                  </Button>
+                </SheetTrigger>
+                <SheetContent>
+                  <SheetHeader>
+                    <SheetTitle>Collection of predefined prompts</SheetTitle>
+                    <SheetDescription>
+                      Choose a prompt from the list below
+                      <div className="flex flex-col gap-2 pt-4">
+                        {Object.keys(prompts).map((p, i) => (
+                          <div
+                            key={i}
+                            className="flex flex-row justify-between items-center"
+                          >
+                            <p>{p}</p>
+                            <Button
+                              variant="secondary"
+                              onClick={() => {
+                                setPrompt(prompts[p as keyof typeof prompts]);
+                                setIsOpen(false);
+                              }}
+                            >
+                              Pick
+                            </Button>
+                          </div>
+                        ))}
+                        <hr />
+                        Or generate a random prompt
+                        <div className="flex flex-row justify-between items-center">
+                          <p className="text-sm">
+                            {randomPrompt || "Click the button below"}
+                          </p>
+                          <Button
+                            variant="secondary"
+                            onClick={() => {
+                              setPrompt(randomPrompt);
+                              setIsOpen(false);
+                            }}
+                          >
+                            Pick
+                          </Button>
+                        </div>
+                        <Button
+                          variant="secondary"
+                          onClick={() => {
+                            setRandomPrompt(promptmaker());
+                          }}
+                        >
+                          Generate
+                        </Button>
+                      </div>
+                    </SheetDescription>
+                  </SheetHeader>
+                </SheetContent>
+              </Sheet>
             </div>
           </div>
           <div>
@@ -231,7 +335,9 @@ const Dashboard = (
             Please wait
           </Button>
         ) : (
-          <Button className="mt-4" type="submit" variant="default"></Button>
+          <Button className="mt-4" type="submit" variant="default">
+            Generate pictures
+          </Button>
         )}
       </form>
     </div>
