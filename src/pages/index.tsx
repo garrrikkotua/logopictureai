@@ -12,6 +12,7 @@ import {
 
 const font = Montserrat({ subsets: ["latin"] });
 
+// lemon squeezy
 const CHECKOUT_URL =
   "https://igorkotua.lemonsqueezy.com/checkout/buy/d28ba7f4-5df9-4bf2-b7f5-45274fa95679?discount=0";
 
