@@ -12,7 +12,8 @@ import {
 
 const font = Montserrat({ subsets: ["latin"] });
 
-const CHECKOUT_URL = "https://checkout.lemonsqueezy.com/checkout.js";
+const CHECKOUT_URL =
+  "https://igorkotua.lemonsqueezy.com/checkout/buy/d28ba7f4-5df9-4bf2-b7f5-45274fa95679?discount=0";
 
 const Card = ({
   num,
@@ -41,9 +42,10 @@ const Card = ({
       <div className="pb-6">
         <Button
           variant="secondary"
+          asChild
           className="text-xl rounded-lg border border-black hover:bg-main-grad"
         >
-          Get started
+          <Link href={CHECKOUT_URL}>Get Started</Link>
         </Button>
       </div>
     </div>
@@ -403,8 +405,11 @@ export default function Home() {
             </ul>
 
             <div className="mt-8 text-center sm:mt-12">
-              <Button className="inline-flex items-center px-6 py-6 mt-8 font-semibold text-white bg-black transition-all duration-200 rounded-lg lg:mt-16">
-                Start generating
+              <Button
+                asChild
+                className="inline-flex items-center px-6 py-6 mt-8 font-semibold text-white bg-black transition-all duration-200 rounded-lg lg:mt-16"
+              >
+                <Link href={CHECKOUT_URL}>Start generating</Link>
               </Button>
             </div>
           </div>
