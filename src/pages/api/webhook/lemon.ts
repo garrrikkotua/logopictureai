@@ -2,19 +2,34 @@ import { NextApiHandler } from "next";
 import { Database } from "@/lib/types/supabase";
 import { createClient } from "@supabase/supabase-js";
 import crypto from "crypto";
+import type { Readable } from "node:stream";
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 
 const spb = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
   process.env.SUPABASE_SERVICE_KEY as string
 );
 
+// Get raw body as string
+async function getRawBody(readable: Readable): Promise<Buffer> {
+  const chunks = [];
+  for await (const chunk of readable) {
+    chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
+  }
+  return Buffer.concat(chunks);
+}
+
 const handler: NextApiHandler = async (req, res) => {
+  const rawBody = await getRawBody(req);
   const secret = process.env.LEMON_WEBHOOK_SECRET as string;
   const hmac = crypto.createHmac("sha256", secret);
-  const digest = Buffer.from(
-    hmac.update(JSON.stringify(req.body)).digest("hex"),
-    "utf8"
-  );
+  const digest = Buffer.from(hmac.update(rawBody).digest("hex"), "utf8");
+
   const signature = Buffer.from(
     (req.headers["x-signature"] as string) || "",
     "utf8"
@@ -23,9 +38,49 @@ const handler: NextApiHandler = async (req, res) => {
   if (!crypto.timingSafeEqual(digest, signature)) {
     throw new Error("Invalid signature.");
   }
+
+  const body = JSON.parse(Buffer.from(rawBody).toString("utf8"));
+  console.log("json data for this request is:", body);
+
   try {
-    const body = req.body;
-    console.log("lemon", body.data.attributes.first_order_item);
+    const variant_name: string =
+      body.data.attributes.first_order_item.variant_name;
+    let credits = 0;
+    const isTestMode = body.meta.test_mode;
+    const email = body.data.attributes.user_email;
+
+    console.log("email", email);
+
+    if (isTestMode) {
+      console.log("test mode");
+      res.status(200).json({ status: "ok" });
+      return;
+    }
+
+    if (variant_name.includes("Starter")) {
+      credits = 50;
+    } else if (variant_name.includes("Growth")) {
+      credits = 200;
+    } else if (variant_name.includes("Scale")) {
+      credits = 500;
+    }
+
+    const { error } = await spb.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/callback`,
+      },
+    });
+
+    console.log("error", error);
+
+    const userData = await spb.rpc("get_user_id_by_email", { email });
+
+    const userId = userData?.data?.[0]?.id as string;
+    console.log("userId", userId);
+
+    await spb.rpc("increment_credits", { row_id: userId, num: credits });
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error processing LMS webhook" });

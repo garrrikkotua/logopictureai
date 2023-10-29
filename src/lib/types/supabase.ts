@@ -70,6 +70,14 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
+      get_user_id_by_email: {
+        Args: {
+          email: string
+        }
+        Returns: {
+          id: string
+        }[]
+      }
       increment_credits: {
         Args: {
           num: number

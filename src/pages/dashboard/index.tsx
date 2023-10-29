@@ -46,7 +46,7 @@ const prompts = {
     "A vibrant spring landscape with blooming flowers and lush greenery. The scene is filled with the sounds of chirping birds and a gentle breeze rustling the leaves. No human presence is visible.",
   "Summer Solstice":
     "A bright summer landscape with a golden sun shining down on a field of sunflowers. The scene is filled with the buzz of insects and the scent of fresh earth. No human presence is visible.",
-  "Autumn Harvest":
+  "Autumn Landscape`":
     "A rich autumn landscape with trees ablaze in hues of red and gold. The scene is filled with the crisp scent of fallen leaves and the sound of them crunching underfoot. No human presence is visible.",
   "Tropical Paradise":
     "A lush tropical landscape with palm trees swaying in the breeze and crystal clear waters lapping at the shore. The scene is filled with the sound of distant waves and the scent of salt in the air. No human presence is visible.",
@@ -56,6 +56,14 @@ const prompts = {
     "A stark arctic landscape with snow-covered plains stretching out to the horizon. The scene is filled with the sound of the wind whistling through the icy expanse and the distant call of a lone wolf. No human presence is visible.",
   "Fiery Fervor":
     "A captivating scene of a roaring bonfire under the starlit sky. The crackling flames dance passionately, casting a warm glow on the surrounding area. The scene is filled with the comforting scent of burning wood and the mesmerizing sound of fire. No human presence is visible.",
+  "Cloudy Skies":
+    "A cloudy sky with the sun peeking through the clouds. The scene is filled with the sound of birds chirping and the scent of fresh air. No human presence is visible.",
+  "Starry Night":
+    "A starry night sky with the moon shining brightly. The scene is filled with the sound of crickets chirping and the scent of fresh air. No human presence is visible.",
+  "Sunset at the Beach":
+    "A beautiful sunset at the beach. The scene is filled with the sound of waves crashing and the scent of salt in the air. No human presence is visible.",
+  "Sunrise at the Beach":
+    "A beautiful sunrise at the beach. The scene is filled with the sound of waves crashing and the scent of salt in the air. No human presence is visible.",
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
