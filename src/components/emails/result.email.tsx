@@ -1,12 +1,11 @@
 import React from "react";
+import { APP_NAME } from "@/lib/constants";
 
 interface EmailTemplateProps {
   email: string;
   prompt: string;
   numberOfPictures: number;
 }
-
-const appName = "AiArtLogo";
 
 export const ResultEmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   email,
@@ -35,7 +34,7 @@ export const ResultEmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
       <small>
         This email was sent by{" "}
         <strong>
-          <a href={process.env.NEXT_PUBLIC_SITE_URL}>{appName}</a>
+          <a href={process.env.NEXT_PUBLIC_SITE_URL}>{APP_NAME}</a>
         </strong>
       </small>
     </p>

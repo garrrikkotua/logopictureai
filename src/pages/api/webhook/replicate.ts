@@ -28,7 +28,7 @@ const handler: NextApiHandler = async (req, res) => {
       .eq("id", generationId as string);
 
     await resend.emails.send({
-      from: "AIArtLogo <igor@mail.aiartlogo.com>",
+      from: "AIArtLogo <igor@emails.logopictureai.com>",
       to: [email as string],
       subject: "Your order has been delivered!",
       react: ResultEmailTemplate({
