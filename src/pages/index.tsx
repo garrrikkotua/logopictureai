@@ -13,17 +13,25 @@ import {
 const font = Montserrat({ subsets: ["latin"] });
 
 // lemon squeezy checkout url
-const CHECKOUT_URL =
+const CHECKOUT_URL_STARTER =
   "https://igorkotua.lemonsqueezy.com/checkout/buy/d28ba7f4-5df9-4bf2-b7f5-45274fa95679?discount=0";
+
+const CHECKOUT_URL_GROWTH =
+  "https://igorkotua.lemonsqueezy.com/checkout/buy/99d2fa16-152f-40ab-bd70-47a955200d2e?discount=0";
+
+const CHECKOUT_URL_SCALE =
+  "https://igorkotua.lemonsqueezy.com/checkout/buy/1c46bdfd-9748-4fdc-a7a9-763ba89856bd?discount=0";
 
 const Card = ({
   num,
   plan,
   price,
+  url,
 }: {
   num: number;
   plan: string;
   price: number;
+  url: string;
 }) => {
   return (
     <div className="w-full max-w-sm flex flex-col items-center justify-between h-48 xl:h-56 border-2 border-black rounded-3xl mx-auto gap-4">
@@ -46,7 +54,7 @@ const Card = ({
           asChild
           className="text-xl rounded-lg border border-black hover:bg-main-grad"
         >
-          <Link href={CHECKOUT_URL}>Get Started</Link>
+          <Link href={url}>Get Started</Link>
         </Button>
       </div>
     </div>
@@ -236,9 +244,19 @@ export default function Home() {
             </div>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-10">
-            <Card num={50} plan="Starter*" price={9.9} />
-            <Card num={200} plan="Growth" price={19} />
-            <Card num={500} plan="Scale" price={39} />
+            <Card
+              num={50}
+              plan="Starter*"
+              price={9.9}
+              url={CHECKOUT_URL_STARTER}
+            />
+            <Card
+              num={200}
+              plan="Growth"
+              price={19}
+              url={CHECKOUT_URL_GROWTH}
+            />
+            <Card num={500} plan="Scale" price={39} url={CHECKOUT_URL_SCALE} />
           </div>
           <p className="pt-8 max-w-xs mx-auto text-center lg:mx-0 lg:ml-3 lg:text-left text-xl">
             *No questions asked, 7-day money-back guarantee for Starter plan
@@ -410,7 +428,7 @@ export default function Home() {
                 asChild
                 className="inline-flex items-center px-6 py-6 mt-8 font-semibold text-white bg-black transition-all duration-200 rounded-lg lg:mt-16"
               >
-                <Link href={CHECKOUT_URL}>Start generating</Link>
+                <Link href={CHECKOUT_URL_STARTER}>Start generating</Link>
               </Button>
             </div>
           </div>
