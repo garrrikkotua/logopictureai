@@ -14,7 +14,14 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const handler: NextApiHandler = async (req, res) => {
   console.log("query", req.query);
   try {
-    const { generationId, email } = req.query;
+    const { generationId, email, secret } = req.query;
+
+    if (process.env.REPLICATE_WEBHOOK_SECRET) {
+      // if a secret is set, verify it
+      if (secret !== process.env.REPLICATE_WEBHOOK_SECRET) {
+        return new Response("Invalid secret", { status: 401 });
+      }
+    }
 
     const body = req.body;
     console.log(body);

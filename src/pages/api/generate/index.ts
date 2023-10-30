@@ -16,6 +16,9 @@ const replicate = new Replicate({
 const WEBHOOK_BASE = `${process.env.WEBHOOK_URL}/api/webhook/replicate`
 
 const createUrl = (generationId: string, email: string) => {
+  if (process.env.REPLICATE_WEBHOOK_SECRET) {
+    return `${WEBHOOK_BASE}?generationId=${generationId}&email=${email}&secret=${process.env.REPLICATE_WEBHOOK_SECRET}`
+  }
   return `${WEBHOOK_BASE}?generationId=${generationId}&email=${email}`
 }
 
@@ -31,7 +34,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
             image: pattern,
             num_outputs: numberOfPictures,
             controlnet_conditioning_scale: 1.5,
-            qr_code_content: "https://aiartlogo.com",
+            qr_code_content: "https://logopictureai.com",
             qrcode_background: "white",
         },
         webhook: createUrl(generationId, email),
