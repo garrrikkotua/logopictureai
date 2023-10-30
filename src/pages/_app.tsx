@@ -6,6 +6,7 @@ import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { Database } from "@/lib/types/supabase";
+import { Analytics } from "@vercel/analytics/react";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ export default function App({
       >
         <Component {...pageProps} />
         <Toaster />
+        <Analytics />
       </SessionContextProvider>
     </QueryClientProvider>
   );
