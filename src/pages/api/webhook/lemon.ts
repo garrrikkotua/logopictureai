@@ -63,13 +63,13 @@ const handler: NextApiHandler = async (req, res) => {
       credits = 200;
     } else if (variant_name.includes("Scale")) {
       credits = 500;
+    } else {
+      // ignore
+      res.status(400).json({ status: "No plan found" });
     }
 
-    const { error } = await spb.auth.signInWithOtp({
+    const { error } = await spb.auth.admin.createUser({
       email,
-      options: {
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/callback`,
-      },
     });
 
     console.log("error", error);
