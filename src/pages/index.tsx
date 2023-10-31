@@ -64,39 +64,39 @@ const Card = ({
 export default function Home() {
   return (
     <main
-      className={`flex min-h-screen w-full pt-20 flex-col px-8 sm:px-24 ${font.className}`}
+      className={`flex min-h-screen w-full pt-10 sm:pt-20 flex-col px-8 sm:px-24 ${font.className}`}
     >
       <section className="">
         <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[65%_35%] w-full">
             <div className="w-full">
-              <p className="sm:text-3xl text-base font-semibold tracking-wider">
+              <p className="sm:text-3xl text-lg font-semibold tracking-wider">
                 {APP_NAME}
               </p>
               <h1 className="mt-4 text-2xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px]">
                 Create content with a logo in a few minutes
               </h1>
-              <div className="pt-14 w-full sm:hidden">
-                <Image
-                  src="/showcase.png"
-                  alt="Optical Illusion Art Demonstration"
-                  width="410"
-                  height="590"
-                  className="mx-auto"
-                />
-              </div>
-              <p className="mt-4 text-[15px] text-black lg:mt-14 sm:text-2xl leading-[150%]">
+              <Image
+                src="/showcase_mobile.png"
+                alt="Optical Illusion Art Demonstration"
+                width="276"
+                height="340"
+                className="pt-4 sm:hidden"
+              />
+              <p className="mt-4 sm:mt-8 text-[15px] text-black lg:mt-14 sm:text-2xl leading-[150%]">
                 Say goodbye to the struggle of finding stunning images for your
                 brand. Now, you can effortlessly create optical illusion art
-                featuring your logo in just a few minutes!
-                <br /> <br />
+                with your logo in just a few minutes!
+              </p>
+              <p className="mt-4 sm:mt-8 text-[15px] text-black sm:text-2xl leading-[150%]">
                 Picture ideas are limited only by your imagination. No ideas at
                 all? This is not a problem, AI will offer you ideas.
-                <br /> <br />
+              </p>
+              <p className="mt-4 sm:mt-8 text-[15px] text-black sm:text-2xl leading-[150%]">
                 Try it right now!
               </p>
               <Button
-                className="inline-flex items-center px-4 sm:px-6 py-4 sm:py-6 mt-8 font-semibold text-white bg-black transition-all duration-200 rounded-lg lg:mt-16"
+                className="inline-flex items-center px-4 sm:px-8 py-4 sm:py-8 mt-4 sm:text-2xl font-semibold text-white bg-black transition-all duration-200 rounded-xl lg:mt-16"
                 role="button"
                 onClick={() => {
                   const element = document.getElementById("pricing");
@@ -107,13 +107,16 @@ export default function Home() {
               </Button>
 
               <Button asChild variant="link">
-                <Link href="/login" className="underline">
+                <Link
+                  href="/login"
+                  className="underline underline-offset-2 sm:text-2xl"
+                >
                   Or Login
                 </Link>
               </Button>
             </div>
 
-            <div className="pt-14 w-full mx-auto hidden sm:block">
+            <div className="pt-20 w-full mx-auto hidden sm:block">
               <Image
                 src="/showcase.png"
                 alt="Optical Illusion Art Demonstration"
@@ -128,7 +131,7 @@ export default function Home() {
       <section className="pt-20 sm:pt-48">
         <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="max-w-3xl">
-            <p className="sm:text-3xl text-base font-semibold tracking-wider">
+            <p className="sm:text-3xl text-lg font-semibold tracking-wider">
               ▶︎ How it works
             </p>
             <h2 className="mt-4 text-2xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px]">
@@ -237,7 +240,7 @@ export default function Home() {
       <section className="pt-20 sm:pt-48" id="pricing">
         <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="w-full">
-            <p className="sm:text-3xl text-base font-semibold tracking-wider">
+            <p className="sm:text-3xl text-lg font-semibold tracking-wider">
               ▶︎ Pricing
             </p>
             <div className="flex flex-row w-full items-center">
@@ -277,7 +280,7 @@ export default function Home() {
       <section className="pt-20 sm:pt-48" id="pricing">
         <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="max-w-3xl">
-            <p className="sm:text-3xl text-base font-semibold tracking-wider">
+            <p className="sm:text-3xl text-lg font-semibold tracking-wider">
               ▶︎ FAQ
             </p>
             <h2 className="mt-4 text-2xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px]">
@@ -455,7 +458,7 @@ export default function Home() {
       </section>
       <footer className="py-12 sm:py-16 lg:py-20">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <p className="text-2xl sm:text-3xl font-semibold tracking-wider text-center">
+          <p className="text-lg sm:text-3xl font-semibold tracking-wider text-center">
             {APP_NAME}
           </p>
 
