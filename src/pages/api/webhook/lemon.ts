@@ -79,7 +79,19 @@ const handler: NextApiHandler = async (req, res) => {
     const userId = userData?.data?.[0]?.id as string;
     console.log("userId", userId);
 
-    await spb.rpc("increment_credits", { row_id: userId, num: credits });
+    // check if user has already a record in credits table
+    const { data } = await spb
+      .from("credits")
+      .select("*")
+      .eq("user_id", userId).single();
+
+    if (data && data.credits) {
+      // update record
+      await spb.rpc("increment_credits", { row_id: userId, num: credits });
+    } else {
+      // create new record
+      await spb.from("credits").insert([{ user_id: userId, credits }]);
+    }
 
   } catch (error) {
     console.error(error);
