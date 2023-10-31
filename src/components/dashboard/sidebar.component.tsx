@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { Database } from "@/lib/types/supabase";
 import { APP_NAME } from "@/lib/constants";
+import { CHECKOUT_URL_STARTER } from "@/lib/constants";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -80,7 +81,9 @@ export function Sidebar({ className }: SidebarProps) {
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
             Credits: {isLoading ? "..." : credits}
           </h2>
-          <Button variant="link">Buy more credits</Button>
+          <Button variant="link" asChild>
+            <Link href={CHECKOUT_URL_STARTER}>Buy more credits</Link>
+          </Button>
         </div>
       </div>
     </div>

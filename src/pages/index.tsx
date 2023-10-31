@@ -1,7 +1,12 @@
 import { Montserrat } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { APP_NAME } from "@/lib/constants";
+import {
+  APP_NAME,
+  CHECKOUT_URL_STARTER,
+  CHECKOUT_URL_GROWTH,
+  CHECKOUT_URL_SCALE,
+} from "@/lib/constants";
 import Image from "next/image";
 import {
   Accordion,
@@ -11,16 +16,6 @@ import {
 } from "@/components/ui/accordion";
 
 const font = Montserrat({ subsets: ["latin"] });
-
-// lemon squeezy checkout url
-const CHECKOUT_URL_STARTER =
-  "https://igorkotua.lemonsqueezy.com/checkout/buy/d28ba7f4-5df9-4bf2-b7f5-45274fa95679?discount=0";
-
-const CHECKOUT_URL_GROWTH =
-  "https://igorkotua.lemonsqueezy.com/checkout/buy/99d2fa16-152f-40ab-bd70-47a955200d2e?discount=0";
-
-const CHECKOUT_URL_SCALE =
-  "https://igorkotua.lemonsqueezy.com/checkout/buy/1c46bdfd-9748-4fdc-a7a9-763ba89856bd?discount=0";
 
 const Card = ({
   num,
@@ -298,9 +293,11 @@ export default function Home() {
                   What type of logo should I upload?
                 </AccordionTrigger>
                 <AccordionContent className="text-xl">
-                  We strongly recommend uploading a logo with a transparent
-                  background and a square (1:1) ratio. The simplest versions of
-                  the logo work best - black and white, without any text.
+                  We strongly recommend uploading a logo with a white background
+                  and a square (1:1) ratio. The simplest versions of the logo
+                  work best - black and white, or one color. Background shouldnt
+                  be transparent. If you have a logo with a transparent
+                  background, please add a white background before uploading.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">

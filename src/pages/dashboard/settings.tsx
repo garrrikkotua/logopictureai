@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Database } from "@/lib/types/supabase";
 import { Button } from "@/components/ui/button";
+import { CHECKOUT_URL_STARTER, CUSTOMER_PORTAL_URL } from "@/lib/constants";
+import Link from "next/link";
 
 const Settings = () => {
   const user = useUser();
@@ -31,7 +33,9 @@ const Settings = () => {
         Credits: <span className="font-semibold">{credits}</span>
       </p>
       <div className="pt-4">
-        <Button>Buy more credits</Button>
+        <Button asChild>
+          <Link href={CHECKOUT_URL_STARTER}>Buy more credits</Link>
+        </Button>
       </div>
       <div className="pt-4">
         <h1 className="text-xl">Support</h1>
@@ -43,6 +47,15 @@ const Settings = () => {
           or dm me on Twitter {""}
           <a href="https://twitter.com/garrrikkotua" className="underline">
             @garrikkotua
+          </a>
+        </p>
+      </div>
+      <div className="pt-4">
+        <h1 className="text-xl">Customer Portal</h1>
+        <p className="pt-2">
+          You can manage your orders and get invoices {""}
+          <a href={CUSTOMER_PORTAL_URL} className="underline">
+            here
           </a>
         </p>
       </div>
