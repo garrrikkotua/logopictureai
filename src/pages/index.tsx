@@ -64,19 +64,28 @@ const Card = ({
 export default function Home() {
   return (
     <main
-      className={`flex min-h-screen w-full pt-20 flex-col px-24 ${font.className}`}
+      className={`flex min-h-screen w-full pt-20 flex-col px-8 sm:px-24 ${font.className}`}
     >
       <section className="">
         <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[65%_35%] w-full">
             <div className="w-full">
-              <p className="text-3xl font-semibold tracking-wider">
+              <p className="sm:text-3xl text-base font-semibold tracking-wider">
                 {APP_NAME}
               </p>
-              <h1 className="mt-4 text-4xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px]">
+              <h1 className="mt-4 text-2xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px]">
                 Create content with logo in a few minutes
               </h1>
-              <p className="mt-4 text-xl text-black lg:mt-14 sm:text-2xl leading-[150%]">
+              <div className="pt-14 w-full sm:hidden">
+                <Image
+                  src="/showcase.png"
+                  alt="Optical Illusion Art Demonstration"
+                  width="410"
+                  height="590"
+                  className="mx-auto"
+                />
+              </div>
+              <p className="mt-4 text-[15px] text-black lg:mt-14 sm:text-2xl leading-[150%]">
                 You can no longer puzzle over where to get beautiful pictures
                 for your brand. You can create optical illusion art with your
                 logo in a few minutes!
@@ -87,7 +96,7 @@ export default function Home() {
                 Try it right now!
               </p>
               <Button
-                className="inline-flex items-center px-6 py-6 mt-8 font-semibold text-white bg-black transition-all duration-200 rounded-lg lg:mt-16"
+                className="inline-flex items-center px-4 sm:px-6 py-4 sm:py-6 mt-8 font-semibold text-white bg-black transition-all duration-200 rounded-lg lg:mt-16"
                 role="button"
                 onClick={() => {
                   const element = document.getElementById("pricing");
@@ -104,7 +113,7 @@ export default function Home() {
               </Button>
             </div>
 
-            <div className="pt-14 w-full mx-auto">
+            <div className="pt-14 w-full mx-auto hidden sm:block">
               <Image
                 src="/showcase.png"
                 alt="Optical Illusion Art Demonstration"
@@ -116,13 +125,13 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="pt-48">
+      <section className="pt-20 sm:pt-48">
         <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="max-w-3xl">
-            <p className="text-3xl font-semibold tracking-wider">
+            <p className="sm:text-3xl text-base font-semibold tracking-wider">
               ▶︎ How it works
             </p>
-            <h2 className="mt-4 text-4xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px]">
+            <h2 className="mt-4 text-2xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px]">
               The easiest way to create optical illussion art with your logo
             </h2>
           </div>
@@ -137,7 +146,7 @@ export default function Home() {
               />
             </div>
 
-            <div className="grid grid-cols-1 text-center md:text-left md:grid-cols-3 md:gap-x-16 gap-y-12 xl:gap-x-32">
+            <div className="grid grid-cols-1 text-center md:text-left md:grid-cols-3 md:gap-x-16 gap-y-6 xl:gap-x-32">
               <div className="flex flex-col justify-between gap-4">
                 <div className="relative flex-shrink-0 mx-8 md:mx-0">
                   <div className="absolute -inset-1">
@@ -155,11 +164,11 @@ export default function Home() {
                   />
                 </div>
 
-                <div className="mt-6 md:mt-10">
-                  <h3 className="text-2xl font-bold text-gray-900">
+                <div className="mt-6 md:mt-10 text-left sm:text-center">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
                     Upload your logo
                   </h3>
-                  <p className="mt-4 text-xl font-normal leading-7 text-gray-600">
+                  <p className="mt-4 text-base sm:text-xl font-normal leading-7 text-gray-600">
                     Simply upload your logo in a png or jpeg format, square
                     ratio is recommended
                   </p>
@@ -183,11 +192,11 @@ export default function Home() {
                   />
                 </div>
 
-                <div className="mt-6 md:mt-10">
-                  <h3 className="text-2xl font-bold text-gray-900 ">
+                <div className="mt-6 md:mt-10 text-left sm:text-center">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 ">
                     Pick a style
                   </h3>
-                  <p className="mt-4 text-xl font-normal leading-7 text-gray-600">
+                  <p className="mt-4 text-base sm:text-xl font-normal leading-7 text-gray-600">
                     Select a predefined prompt, generate a random one or create
                     your own
                   </p>
@@ -211,11 +220,11 @@ export default function Home() {
                   />
                 </div>
 
-                <div className="md:mt-10 lg:mt-6">
-                  <h3 className="text-2xl font-bold text-gray-900">
+                <div className="mt-6 md:mt-10 lg:mt-6 text-left sm:text-center">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
                     Get pictures via email
                   </h3>
-                  <p className="mt-4 text-xl font-normal leading-7 text-gray-600">
+                  <p className="mt-4 text-base sm:text-xl font-normal leading-7 text-gray-600">
                     All pictures are generated in a few minutes. You will
                     receive them in your email
                   </p>
@@ -225,12 +234,14 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="pt-48" id="pricing">
+      <section className="pt-20 sm:pt-48" id="pricing">
         <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="w-full">
-            <p className="text-3xl font-semibold tracking-wider">▶︎ Pricing</p>
+            <p className="sm:text-3xl text-base font-semibold tracking-wider">
+              ▶︎ Pricing
+            </p>
             <div className="flex flex-row w-full items-center">
-              <h2 className="mt-4 text-4xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px] max-w-3xl">
+              <h2 className="mt-4 text-2xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px] max-w-3xl">
                 Start generating logo art right now
               </h2>
               <div className="ml-auto ">
@@ -263,16 +274,22 @@ export default function Home() {
           </p>
         </div>
       </section>
-      <section className="pt-48" id="pricing">
+      <section className="pt-20 sm:pt-48" id="pricing">
         <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="max-w-3xl">
-            <p className="text-3xl font-semibold tracking-wider">▶︎ FAQ</p>
-            <h2 className="mt-4 text-4xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px]">
+            <p className="sm:text-3xl text-base font-semibold tracking-wider">
+              ▶︎ FAQ
+            </p>
+            <h2 className="mt-4 text-2xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px]">
               Answers to common questions about LogoPicture AI
             </h2>
           </div>
           <div className="pt-8 max-w-2xl">
-            <Accordion type="single" collapsible className="text-2xl">
+            <Accordion
+              type="single"
+              collapsible
+              className="text-xl sm:text-2xl"
+            >
               <AccordionItem value="item-1">
                 <AccordionTrigger>Do you offer refunds?</AccordionTrigger>
                 <AccordionContent className="text-xl">
@@ -350,14 +367,14 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="pt-48 sm:py-16 lg:py-20">
+      <section className="pt-20 sm:pt-48 sm:py-16 lg:py-20">
         <div className="relative px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="absolute -inset-4">
             <div className="w-full h-full mx-auto opacity-30 blur-lg filter"></div>
           </div>
           <div className="relative px-8 py-10 overflow-hidden lg:px-24 md:py-20 bg-gray-50 rounded-3xl">
             <div className="max-w-lg mx-auto text-center">
-              <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl xl:text-5xl font-pj">
+              <h2 className="text-2xl font-bold text-gray-900 sm:text-4xl xl:text-5xl font-pj">
                 Generate logo art right now
               </h2>
             </div>
@@ -400,7 +417,9 @@ export default function Home() {
                   ></path>
                 </svg>
                 <span className="ml-3 text-xl font-bold">
-                  Multiple predefined styles
+                  Multiple{" "}
+                  <span className="hidden sm:inline-block">predefined</span>{" "}
+                  styles
                 </span>
               </li>
 
@@ -436,7 +455,7 @@ export default function Home() {
       </section>
       <footer className="py-12 sm:py-16 lg:py-20">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <p className="text-3xl font-semibold tracking-wider text-center">
+          <p className="text-2xl sm:text-3xl font-semibold tracking-wider text-center">
             {APP_NAME}
           </p>
 
