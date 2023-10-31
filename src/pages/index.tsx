@@ -74,7 +74,7 @@ export default function Home() {
                 {APP_NAME}
               </p>
               <h1 className="mt-4 text-2xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px]">
-                Create content with logo in a few minutes
+                Create content with a logo in a few minutes
               </h1>
               <div className="pt-14 w-full sm:hidden">
                 <Image
@@ -86,9 +86,9 @@ export default function Home() {
                 />
               </div>
               <p className="mt-4 text-[15px] text-black lg:mt-14 sm:text-2xl leading-[150%]">
-                You can no longer puzzle over where to get beautiful pictures
-                for your brand. You can create optical illusion art with your
-                logo in a few minutes!
+                Say goodbye to the struggle of finding stunning images for your
+                brand. Now, you can effortlessly create optical illusion art
+                featuring your logo in just a few minutes!
                 <br /> <br />
                 Picture ideas are limited only by your imagination. No ideas at
                 all? This is not a problem, AI will offer you ideas.
@@ -132,7 +132,7 @@ export default function Home() {
               ▶︎ How it works
             </p>
             <h2 className="mt-4 text-2xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px]">
-              The easiest way to create optical illussion art with your logo
+              The easiest way to create optical illusion art with your logo
             </h2>
           </div>
           <div className="relative max-w-md mx-auto mt-12 md:max-w-none md:mt-20">
@@ -169,8 +169,8 @@ export default function Home() {
                     Upload your logo
                   </h3>
                   <p className="mt-4 text-base sm:text-xl font-normal leading-7 text-gray-600">
-                    Simply upload your logo in a png or jpeg format, square
-                    ratio is recommended
+                    Simply upload your logo in either png or jpeg format. A
+                    square ratio is recommended.
                   </p>
                 </div>
               </div>
@@ -197,8 +197,8 @@ export default function Home() {
                     Pick a style
                   </h3>
                   <p className="mt-4 text-base sm:text-xl font-normal leading-7 text-gray-600">
-                    Select a predefined prompt, generate a random one or create
-                    your own
+                    Select a predefined prompt, generate a random one, or create
+                    your own.
                   </p>
                 </div>
               </div>
@@ -225,8 +225,8 @@ export default function Home() {
                     Get pictures via email
                   </h3>
                   <p className="mt-4 text-base sm:text-xl font-normal leading-7 text-gray-600">
-                    All pictures are generated in a few minutes. You will
-                    receive them in your email
+                    All pictures are generated within a few minutes and will be
+                    delivered to your email.
                   </p>
                 </div>
               </div>
@@ -270,7 +270,7 @@ export default function Home() {
             <Card num={500} plan="Scale" price={39} url={CHECKOUT_URL_SCALE} />
           </div>
           <p className="pt-8 max-w-xs mx-auto text-center lg:mx-0 lg:ml-3 lg:text-left text-xl">
-            *No questions asked, 7-day money-back guarantee for Starter plan
+            *7-day money-back guarantee for the Starter plan, no questions asked
           </p>
         </div>
       </section>
@@ -290,24 +290,14 @@ export default function Home() {
               collapsible
               className="text-xl sm:text-2xl"
             >
-              <AccordionItem value="item-1">
-                <AccordionTrigger>Do you offer refunds?</AccordionTrigger>
-                <AccordionContent className="text-xl">
-                  Yes, we offer a 7-day money-back guarantee for Starter plan.
-                  For other plans refunds are not available. But if you are
-                  unhappy with the results, please contact us and we will help
-                  you to get the best results.
-                </AccordionContent>
-              </AccordionItem>
               <AccordionItem value="item-2">
                 <AccordionTrigger>
                   What type of logo should I upload?
                 </AccordionTrigger>
                 <AccordionContent className="text-xl">
-                  We strongly recommend to upload a logo with a transparent
-                  background and with a square (1:1) ratio. The simplest
-                  versions of the logo work best - black and white, without
-                  text.
+                  We strongly recommend uploading a logo with a transparent
+                  background and a square (1:1) ratio. The simplest versions of
+                  the logo work best - black and white, without any text.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
@@ -315,8 +305,8 @@ export default function Home() {
                   How long does it take to get the results?
                 </AccordionTrigger>
                 <AccordionContent className="text-xl">
-                  Pictures are generated in a few minutes. You will receive them
-                  in your email once they are ready.
+                  Pictures are generated within a few minutes. You will receive
+                  them via email once they are ready.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4">
@@ -324,12 +314,12 @@ export default function Home() {
                   I need more pictures. Can I buy more credits?
                 </AccordionTrigger>
                 <AccordionContent className="text-xl">
-                  Yes, you can buy any plan multiple times. For example, if you
-                  need 1000 pictures, you can buy 2 plans of 500 pictures each.
-                  They all will be added to your account. Please note, that your
-                  account is associated with your email. So, if you buy a plan
-                  with a different email, you will need to login with that email
-                  to access your credits.
+                  Yes, you can purchase any plan multiple times. For instance,
+                  if you require 1000 pictures, you can purchase two 500-picture
+                  plans. All will be added to your account. Please note that
+                  your account is associated with your email. Therefore, if you
+                  purchase a plan using a different email, you will need to log
+                  in with that email to access your credits.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-5">
@@ -337,8 +327,9 @@ export default function Home() {
                   What output formats do you support?
                 </AccordionTrigger>
                 <AccordionContent className="text-xl">
-                  All output pictures are in PNG format. Currently, all
-                  generated pictures are in 1:1 ratio and 768x768 resolution.
+                  All output pictures are in PNG format. Currently, all the
+                  pictures generated are in a 1:1 ratio and have a resolution of
+                  768x768.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-6">
@@ -353,14 +344,23 @@ export default function Home() {
                   and we will help you to get the best results.
                 </AccordionContent>
               </AccordionItem>
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Do you offer refunds?</AccordionTrigger>
+                <AccordionContent className="text-xl">
+                  Yes, we offer a 7-day money-back guarantee for the Starter
+                  plan. Refunds are not available for other plans. However, if
+                  you are unsatisfied with the results, please contact us and we
+                  will assist you in achieving the best results.
+                </AccordionContent>
+              </AccordionItem>
               <AccordionItem value="item-7">
                 <AccordionTrigger>
                   What payment methods do you support?
                 </AccordionTrigger>
                 <AccordionContent className="text-xl">
                   We accept all major credit cards, PayPal, Apple Pay, Google
-                  Pay, Alipay, WeChat Pay, and Bank debits (ACH). Everything is
-                  processed by LemonSqueezy MoR.
+                  Pay, Alipay, WeChat Pay, and bank debits (ACH). All
+                  transactions are processed by LemonSqueezy MoR.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
