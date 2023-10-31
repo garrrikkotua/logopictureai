@@ -103,6 +103,7 @@ const Dashboard = (
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [randomPrompt, setRandomPrompt] = useState<string>(promptmaker());
+  const [conditioningScale, setConditioningScale] = useState<number>(1.5);
 
   const { formRef } = useEnterSubmit();
 
@@ -189,6 +190,7 @@ const Dashboard = (
             numberOfPictures,
             email: user?.email,
             userId: user?.id,
+            conditioningScale,
           }),
         });
 
@@ -335,6 +337,23 @@ const Dashboard = (
               {numberOfPictures}
             </div>
             <p className="mt-4">Note: one picture takes one credit</p>
+          </div>
+          <div>
+            <p className="mb-2">
+              4. Conditioning scale (how strongly logo will be visible in the
+              picture)
+            </p>
+            <div className="mt-4 flex flex-row gap-4">
+              <Slider
+                defaultValue={[1.5]}
+                max={4}
+                step={0.1}
+                min={1}
+                value={[conditioningScale]}
+                onValueChange={(value) => setConditioningScale(value[0])}
+              />
+              {conditioningScale}
+            </div>
           </div>
         </div>
         {isLoading ? (

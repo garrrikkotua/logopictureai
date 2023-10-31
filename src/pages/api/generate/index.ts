@@ -24,7 +24,7 @@ const createUrl = (generationId: string, email: string) => {
 
 const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
-    const { pattern, prompt, generationId, numberOfPictures, email, userId} = req.body;
+    const { pattern, prompt, generationId, numberOfPictures, email, userId, conditioningScale} = req.body;
     try {
       await spb.rpc('increment_credits', {row_id: userId, num: -(numberOfPictures as number)})
       const prediction = await replicate.predictions.create({
@@ -33,7 +33,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
             prompt,
             image: pattern,
             num_outputs: numberOfPictures,
-            controlnet_conditioning_scale: 1.5,
+            controlnet_conditioning_scale: conditioningScale,
             qr_code_content: "https://logopictureai.com",
             qrcode_background: "white",
         },
