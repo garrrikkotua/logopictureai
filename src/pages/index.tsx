@@ -29,7 +29,7 @@ const Card = ({
   url: string;
 }) => {
   return (
-    <div className="w-full max-w-sm flex flex-col items-center justify-between h-48 xl:h-56 border-2 border-black rounded-3xl mx-auto gap-4">
+    <div className="w-full max-w-sm flex flex-col items-center justify-between h-56 xl:h-56 border-2 border-black rounded-3xl mx-auto gap-4">
       <div className="flex flex-row px-4 pt-6 gap-4">
         <div className="xl:text-3xl text-2xl font-semibold my-auto">
           <span>{num} pictures</span>
@@ -40,7 +40,7 @@ const Card = ({
           style={{ borderLeft: "1px solid black", height: "80px" }}
         ></div>
         <div className="xl:text-5xl text-4xl my-auto font-semibold">
-          {price}$
+          ${price}
         </div>
       </div>
       <div className="pb-6">
@@ -51,6 +51,7 @@ const Card = ({
         >
           <Link href={url}>Get Started</Link>
         </Button>
+        <p className="pt-4 pb-4">One-time payment</p>
       </div>
     </div>
   );
@@ -79,9 +80,8 @@ export default function Home() {
                 className="pt-4 sm:hidden"
               />
               <p className="mt-4 sm:mt-8 text-[15px] text-black lg:mt-14 sm:text-2xl leading-[150%]">
-                Say goodbye to the struggle of finding stunning images for your
-                brand. Now, you can effortlessly create optical illusion art
-                with your logo in just a few minutes!
+                Get AI optical illusion art with your logo in few minutes.
+                Upload logos, pick your styles & generate 50+ pictures.
               </p>
               <p className="mt-4 sm:mt-8 text-[15px] text-black sm:text-2xl leading-[150%]">
                 Picture ideas are limited only by your imagination. No ideas at
