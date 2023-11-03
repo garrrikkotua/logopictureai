@@ -7,6 +7,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { Database } from "@/lib/types/supabase";
 import { Analytics } from "@vercel/analytics/react";
+import { Montserrat } from "next/font/google";
+
+const font = Montserrat({ subsets: ["latin"] });
 
 const queryClient = new QueryClient();
 
@@ -25,9 +28,16 @@ export default function App({
         supabaseClient={supabaseClient}
         initialSession={pageProps.initialSession}
       >
-        <Component {...pageProps} />
-        <Toaster />
-        <Analytics />
+        <>
+          <style jsx global>{`
+            html {
+              font-family: ${font.style.fontFamily};
+            }
+          `}</style>
+          <Component {...pageProps} />
+          <Toaster />
+          <Analytics />
+        </>
       </SessionContextProvider>
     </QueryClientProvider>
   );

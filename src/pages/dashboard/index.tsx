@@ -64,6 +64,10 @@ const prompts = {
     "A beautiful sunset at the beach. The scene is filled with the sound of waves crashing and the scent of salt in the air. No human presence is visible.",
   "Sunrise at the Beach":
     "A beautiful sunrise at the beach. The scene is filled with the sound of waves crashing and the scent of salt in the air. No human presence is visible.",
+  "Taco Party":
+    "A taco party with a variety of tacos and toppings. The scene is filled with the sound of people eating and the scent of delicious food. No human presence is visible.",
+  "Spilled Coffee Beans":
+    "A pile of spilled coffee beans. The scene is filled with the sound of beans rolling and the scent of coffee. No human presence is visible.",
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
