@@ -20,6 +20,129 @@ import { GalleryComponentGitHub } from "@/components/website/gallery.component";
 
 const font = Montserrat({ subsets: ["latin"] });
 
+const Showcase = () => {
+  return (
+    <div className="flex flex-col justify-center gap-2 w-full">
+      <div className="flex flex-row gap-2 items-center mx-auto">
+        <div>
+          <Image
+            src="/github_simple_logo.png"
+            alt="Github Logo"
+            width={134}
+            height={134}
+            className="mx-auto"
+          />
+        </div>
+        <span className="text-3xl font-semibold shrink-0">+ LogoPicture</span>
+      </div>
+      <div className="mx-auto">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="51"
+          viewBox="0 0 24 51"
+          fill="none"
+        >
+          <path
+            d="M10.9393 50.0607C11.5251 50.6464 12.4749 50.6464 13.0607 50.0607L22.6066 40.5147C23.1924 39.9289 23.1924 38.9792 22.6066 38.3934C22.0208 37.8076 21.0711 37.8076 20.4853 38.3934L12 46.8787L3.51472 38.3934C2.92893 37.8076 1.97919 37.8076 1.3934 38.3934C0.807611 38.9792 0.807611 39.9289 1.3934 40.5147L10.9393 50.0607ZM10.5 0L10.5 49H13.5L13.5 0L10.5 0Z"
+            fill="black"
+          />
+        </svg>
+      </div>
+      <div className="grid grid-cols-2 gap-8 mt-6 items-center justify-center mx-auto">
+        <Image
+          src="/github/mech.jpeg"
+          alt="Github Mechanism Illustration"
+          width={190}
+          height={190}
+          className="rounded-3xl"
+        />
+
+        <Image
+          src="/github/roman_garden.png"
+          alt="Github Roman Garden"
+          width={190}
+          height={190}
+          className="rounded-3xl"
+        />
+        <Image
+          src="/github/ocean.png"
+          alt="Github Ocean View"
+          width={190}
+          height={190}
+          className="rounded-3xl"
+        />
+
+        <Image
+          src="/github/alien_world.png"
+          alt="Github Alien World"
+          width={190}
+          height={190}
+          className="rounded-3xl"
+        />
+        <Link
+          href="/gallery"
+          className="underline underline-offset-2 cols-span-2"
+        >
+          More Examples
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+const ShowcaseMobile = () => {
+  return (
+    <div className="flex flex-col justify-center pt-4 sm:hidden">
+      <div className="flex flex-row gap-2 items-center">
+        <div>
+          <Image
+            src="/github_simple_logo.png"
+            alt="Github Logo"
+            width={90}
+            height={90}
+          />
+        </div>
+        <span className="sm:text-xl text-lg font-semibold shrink-0">
+          + LogoPicture ={" "}
+        </span>
+      </div>
+      <div className="grid grid-cols-2 gap-4 mt-6 mr-auto">
+        <Image
+          src="/github/mech.jpeg"
+          alt="Github Mechanism Illustration"
+          width={190}
+          height={190}
+          className="rounded-3xl"
+        />
+
+        <Image
+          src="/github/roman_garden.png"
+          alt="Github Roman Garden"
+          width={190}
+          height={190}
+          className="rounded-3xl"
+        />
+        <Image
+          src="/github/ocean.png"
+          alt="Github Ocean View"
+          width={190}
+          height={190}
+          className="rounded-3xl"
+        />
+
+        <Image
+          src="/github/alien_world.png"
+          alt="Github Alien World"
+          width={190}
+          height={190}
+          className="rounded-3xl"
+        />
+      </div>
+    </div>
+  );
+};
+
 const Card = ({
   num,
   plan,
@@ -80,13 +203,7 @@ export default function Home() {
                 <h1 className="mt-4 text-2xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px]">
                   Create optical illusion art with your logo
                 </h1>
-                <Image
-                  src="/showcase_mobile.png"
-                  alt="Optical Illusion Art Demonstration"
-                  width="276"
-                  height="340"
-                  className="pt-4 sm:hidden"
-                />
+                <ShowcaseMobile />
                 <p className="mt-4 sm:mt-8 text-[15px] text-black lg:mt-14 sm:text-2xl leading-[150%]">
                   Get AI optical illusion art with your logo in few minutes.
                   Upload logos, pick your styles & generate 50+ pictures.
@@ -120,13 +237,7 @@ export default function Home() {
               </div>
 
               <div className="pt-20 w-full mx-auto hidden sm:block">
-                <Image
-                  src="/showcase.png"
-                  alt="Optical Illusion Art Demonstration"
-                  width="410"
-                  height="590"
-                  className="mx-auto"
-                />
+                <Showcase />
               </div>
             </div>
           </div>
