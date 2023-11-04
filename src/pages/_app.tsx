@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Database } from "@/lib/types/supabase";
 import { Analytics } from "@vercel/analytics/react";
 import { Montserrat } from "next/font/google";
+import { DefaultSeo } from "next-seo";
 
 const font = Montserrat({ subsets: ["latin"] });
 
@@ -29,6 +30,19 @@ export default function App({
         initialSession={pageProps.initialSession}
       >
         <>
+          <DefaultSeo
+            openGraph={{
+              type: "website",
+              locale: "en_IE",
+              url: "https://logopictureai.com",
+              siteName: "LogoPicture AI",
+            }}
+            twitter={{
+              handle: "@garrikkotua",
+              site: "@garrikkotua",
+              cardType: "summary_large_image",
+            }}
+          />
           <style jsx global>{`
             html {
               font-family: ${font.style.fontFamily};

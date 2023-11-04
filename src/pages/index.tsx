@@ -189,6 +189,22 @@ export default function Home() {
       <NextSeo
         title="LogoPicture AI - Create optical illusion art with your logo"
         description="Get AI optical illusion art with your logo in few minutes. Upload logos, pick your styles & generate 50+ pictures. One-time payment."
+        openGraph={{
+          url: "https://logopictureai.com",
+          title: "LogoPicture AI - Create optical illusion art with your logo",
+          description:
+            "Get AI optical illusion art with your logo in few minutes. Upload logos, pick your styles & generate 50+ pictures. One-time payment.",
+          images: [
+            {
+              url: "https://logopictureai.com/og.png",
+              width: 3100,
+              height: 1624,
+              alt: "LogoPicture AI - Create optical illusion art with your logo",
+              type: "image/png",
+            },
+          ],
+          siteName: "LogoPicture AI",
+        }}
       />
       <main
         className={`flex min-h-screen w-full pt-10 sm:pt-20 flex-col px-8 sm:px-24 ${font.className}`}
