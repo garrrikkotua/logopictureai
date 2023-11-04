@@ -206,6 +206,17 @@ export default function Home() {
           siteName: "LogoPicture AI",
         }}
       />
+      <div className="bg-black px-4 py-3 text-white">
+        <p className="text-center text-sm font-medium">
+          LogoPicture AI is live on Product Hunt!{" "}
+          <a
+            href="https://www.producthunt.com/posts/logopicture-ai"
+            className="inline-block underline"
+          >
+            Give us some love ❤️
+          </a>
+        </p>
+      </div>
       <main
         className={`flex min-h-screen w-full pt-10 sm:pt-20 flex-col px-8 sm:px-24 ${font.className}`}
       >
