@@ -202,7 +202,7 @@ export const Footer = () => {
             </ul>
           </div>
 
-          <div>
+          {/* <div>
             <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">
               Use cases
             </p>
@@ -252,9 +252,9 @@ export const Footer = () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">
               Styles
             </p>
@@ -315,7 +315,7 @@ export const Footer = () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
 
         <hr className="mt-16 mb-10 border-gray-200" />
