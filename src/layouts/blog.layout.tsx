@@ -35,45 +35,12 @@ export default function BlogLayout(props: BlogLayoutProps) {
                 <p className="mt-4 sm:mt-8 text-[15px] text-black lg:mt-14 sm:text-2xl leading-[150%]">
                   {props.description}
                 </p>
-
-                {/* <div className="mt-12 flex flex-col gap-12 max-w-4xl mx-auto">
-                  <div>
-                    <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl xl:text-4xl font-pj">
-                      Biling and Refunds
-                    </h2>
-                    <p className="mt-5 text-xl font-normal text-gray-900 font-pj">
-                      We charge a one-time fee and offer refunds only for the
-                      Starter plan within the first 7 days after purchase,
-                      provided that 10 or fewer images were generated (the
-                      Starter plan includes 50 images). For all other plans, we
-                      do not offer refunds.
-                    </p>
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl xl:text-4xl font-pj">
-                      Emails
-                    </h2>
-                    <p className="mt-5 text-xl font-normal text-gray-900 font-pj">
-                      We may use your email to contact you about your account,
-                      product updates, and other marketing activities. You can
-                      unsubscribe from these emails at any time you like.
-                    </p>
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl xl:text-4xl font-pj">
-                      Conditions
-                    </h2>
-                    <p className="mt-5 text-xl font-normal text-gray-900 font-pj">
-                      We reserve the right to change / amend the policy at any
-                      time. By continuing to use our platform, you agree to
-                      these terms and conditions.
-                    </p>
-                  </div>
-                </div> */}
-
-                {props.children}
               </div>
             </div>
+          </div>
+
+          <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            {props.children}
           </div>
         </section>
         <section className="pt-20 sm:pt-48 sm:py-16 lg:py-20">

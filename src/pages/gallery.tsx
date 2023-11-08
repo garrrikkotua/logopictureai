@@ -24,7 +24,7 @@ export default function Gallery() {
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-[65%_35%] w-full">
               <div className="w-full">
                 <p className="sm:text-3xl text-lg font-semibold tracking-wider">
-                  {APP_NAME}
+                  <Link href="/">{APP_NAME}</Link>
                 </p>
                 <h1 className="mt-4 text-2xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px]">
                   Gallery

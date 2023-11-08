@@ -8,7 +8,7 @@ export const Footer = () => {
         <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
           <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
             <p className="text-lg sm:text-3xl font-semibold tracking-wider">
-              {APP_NAME}
+              <Link href="/">{APP_NAME}</Link>
             </p>
 
             <p className="text-base leading-relaxed text-gray-600 mt-7">
