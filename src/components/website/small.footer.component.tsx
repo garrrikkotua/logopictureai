@@ -1,4 +1,5 @@
 import { APP_NAME } from "@/lib/constants";
+import Link from "next/link";
 
 export const SmallFooter = () => {
   return (
@@ -10,13 +11,13 @@ export const SmallFooter = () => {
 
         <ul className="flex flex-row flex-wrap justify-center items-center content-center mt-14 gap-6">
           <li>
-            <a
+            <Link
               href="/contact"
               title=""
               className="text-xl font-medium text-gray-900 transition-all duration-200 transform hover:-translate-y-1 hover:text-gray-600"
             >
               Contact us
-            </a>
+            </Link>
           </li>
 
           <li className="text-center">
@@ -30,23 +31,23 @@ export const SmallFooter = () => {
           </li>
 
           <li>
-            <a
+            <Link
               href="/terms-and-conditions"
               title=""
               className="text-xl font-medium text-gray-900 transition-all duration-200 transform hover:-translate-y-1 hover:text-gray-600"
             >
               Refund Policy
-            </a>
+            </Link>
           </li>
 
           <li>
-            <a
+            <Link
               href="/blog"
               title=""
               className="text-lg font-medium text-gray-900 transition-all duration-200 transform font-pj hover:-translate-y-1 hover:text-gray-600"
             >
               Blog
-            </a>
+            </Link>
           </li>
         </ul>
 
