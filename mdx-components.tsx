@@ -23,6 +23,21 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </p>
     ),
+    ol: ({ children }) => (
+      <ol className="mt-4 sm:mt-8 text-[15px] text-black lg:mt-14 sm:text-2xl leading-[150%]">
+        {children}
+      </ol>
+    ),
+    ul: ({ children }) => (
+      <ul className="mt-4 sm:mt-8 text-[15px] text-black lg:mt-14 sm:text-2xl leading-[150%]">
+        {children}
+      </ul>
+    ),
+    li: ({ children }) => (
+      <li className="mt-4 sm:mt-8 text-[15px] text-black lg:mt-14 sm:text-2xl leading-[150%]">
+        {children}
+      </li>
+    ),
     ...components,
   };
 }

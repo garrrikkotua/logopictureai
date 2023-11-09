@@ -194,8 +194,12 @@ In conclusion, logo art is not only a creative expression but a powerful tool fo
 As we come to the end of this blog post, we hope you have gained valuable insights into the process of creating, analyzing, and appreciating logo art. Whether you are a designer, a business owner, or simply an admirer of art and branding, we hope this exploration has sparked inspiration and a deeper appreciation for the world of logo art.
 
 export default function MDXPage({ children }) {
-  return <BlogLayout title="Logo Art: Creating, Analyzing, and Appreciating"
-  description="Logo art is a powerful and essential aspect of branding. It is a visual representation that reflects the identity and values of a company or organization. Creating a captivating logo requires a blend of creativity, strategic thinking, and an understanding of design principles. In this blog post, we will delve into the world of logo art, exploring the process of creating an effective logo, analyzing what makes a good logo, and appreciating the impact of logo art on branding, society, and culture. Whether you are a designer, a business owner, or simply someone interested in the art of logos, this post will provide valuable insights and inspiration. So, let's dive in and explore the fascinating world of logo art together."
-  >{children}</BlogLayout>;
-
+  return (
+    <BlogLayout
+      title="Logo Art: Creating, Analyzing, and Appreciating"
+      description="Logo art is a powerful and essential aspect of branding. It is a visual representation that reflects the identity and values of a company or organization. Creating a captivating logo requires a blend of creativity, strategic thinking, and an understanding of design principles. In this blog post, we will delve into the world of logo art, exploring the process of creating an effective logo, analyzing what makes a good logo, and appreciating the impact of logo art on branding, society, and culture. Whether you are a designer, a business owner, or simply someone interested in the art of logos, this post will provide valuable insights and inspiration. So, let's dive in and explore the fascinating world of logo art together."
+    >
+      {children}
+    </BlogLayout>
+  );
 }
