@@ -31,10 +31,6 @@ export default function BlogLayout(props: BlogLayoutProps) {
                 <h1 className="mt-4 text-2xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px]">
                   {props.title}
                 </h1>
-
-                <p className="mt-4 sm:mt-8 text-[15px] text-black lg:mt-14 sm:text-2xl leading-[150%]">
-                  {props.description}
-                </p>
               </div>
             </div>
           </div>
