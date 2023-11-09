@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "gen-types": "npx supabase gen types typescript --project-id otsmzecxjglqtsxxkseq --schema public > src/lib/types/supabase.ts"
@@ -36,6 +37,7 @@
     "lucide-react": "^0.288.0",
     "next": "13.5.5",
     "next-seo": "^6.4.0",
+    "next-sitemap": "^4.2.3",
     "promptmaker": "^1.1.0",
     "react": "^18",
     "react-dom": "^18",
