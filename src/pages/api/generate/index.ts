@@ -26,7 +26,6 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
   if (req.method === 'POST') {
     const { pattern, prompt, generationId, numberOfPictures, email, userId, conditioningScale} = req.body;
     try {
-      await spb.rpc('increment_credits', {row_id: userId, num: -(numberOfPictures as number)})
       const prediction = await replicate.predictions.create({
         version: "75d51a73fce3c00de31ed9ab4358c73e8fc0f627dc8ce975818e653317cb919b",
         input: {
@@ -40,6 +39,7 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
         webhook: createUrl(generationId, email),
         webhook_events_filter: ["completed"],
     });
+      await spb.rpc('increment_credits', {row_id: userId, num: -(numberOfPictures as number)})
       res.status(200).json(prediction);
     } catch (error) {
       console.error(error);

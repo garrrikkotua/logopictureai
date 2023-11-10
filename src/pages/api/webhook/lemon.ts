@@ -47,7 +47,7 @@ const handler: NextApiHandler = async (req, res) => {
       body.data.attributes.first_order_item.variant_name;
     let credits = 0;
     const isTestMode = body.meta.test_mode;
-    const email = body.data.attributes.user_email;
+    const email = body.data.attributes.user_email as string;
 
     console.log("email", email);
 
@@ -74,7 +74,7 @@ const handler: NextApiHandler = async (req, res) => {
 
     console.log("error", error);
 
-    const userData = await spb.rpc("get_user_id_by_email", { email });
+    const userData = await spb.rpc("get_user_id_by_email", { email: email.toLowerCase() });
 
     const userId = userData?.data?.[0]?.id as string;
     console.log("userId", userId);

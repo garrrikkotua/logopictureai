@@ -182,21 +182,29 @@ const Dashboard = (
       } else {
         // starting image generation
 
-        await fetch("/api/generate", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            generationId: data?.[0].id,
-            pattern,
-            prompt,
-            numberOfPictures,
-            email: user?.email,
-            userId: user?.id,
-            conditioningScale,
-          }),
-        });
+        try {
+          await fetch("/api/generate", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              generationId: data?.[0].id,
+              pattern,
+              prompt,
+              numberOfPictures,
+              email: user?.email,
+              userId: user?.id,
+              conditioningScale,
+            }),
+          });
+        } catch (error) {
+          toast({
+            title: "Error",
+            description: "Something went wrong. Please try again later.",
+            className: "bg-red-500",
+          });
+        }
 
         toast({
           title: "Success",
@@ -331,8 +339,7 @@ const Dashboard = (
             <p className="mb-2">3. Number of images to generate (variations)</p>
             <div className="mt-4 flex flex-row gap-4">
               <Slider
-                defaultValue={[5]}
-                max={10}
+                max={4}
                 step={1}
                 min={1}
                 value={[numberOfPictures]}
