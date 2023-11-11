@@ -14,7 +14,10 @@ export const ResultEmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
 }) => (
   <div>
     <h1>Hi, {email}!</h1>
-    <p>Please find your pictures attached to this email.</p>
+    <p>
+      Your pictures have been generated. You can find them in the app in a
+      gallery section.
+    </p>
     <hr />
     <h2>Generation details</h2>
     <p>
@@ -24,6 +27,13 @@ export const ResultEmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
       Number of pictures: <strong>{numberOfPictures}</strong>
     </p>
     <hr />
+    <p>
+      <button>
+        <a href={`${process.env.NEXT_PUBLIC_SITE_URL}/dashboard/gallery`}>
+          View pictures
+        </a>
+      </button>
+    </p>
     <p>
       All the best,
       <br />

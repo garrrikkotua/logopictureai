@@ -221,7 +221,7 @@ const Dashboard = (
         toast({
           title: "Success",
           description:
-            "Your logo pictures are being generated. You will receive an email with pictures shortly.",
+            "Your logo pictures are being generated. You can track the progress in the gallery section. You will receive an email when the generation is complete.",
           className: "bg-green-500",
         });
       }

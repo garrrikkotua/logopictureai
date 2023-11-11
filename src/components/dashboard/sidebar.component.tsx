@@ -67,6 +67,13 @@ export function Sidebar({ className }: SidebarProps) {
               <Link href="/dashboard">Generate</Link>
             </Button>
             <Button
+              variant={isActive("/dashboard/gallery") ? "secondary" : "ghost"}
+              className="w-full justify-start"
+              asChild
+            >
+              <Link href="/dashboard/gallery">Gallery</Link>
+            </Button>
+            <Button
               variant={isActive("/dashboard/settings") ? "secondary" : "ghost"}
               className="w-full justify-start"
               asChild

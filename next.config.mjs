@@ -19,7 +19,7 @@ const nextConfig = {
    pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   reactStrictMode: true,
   images: {
-    domains: ['cdn.rareblocks.xyz'],
+    domains: ['cdn.rareblocks.xyz', process.env.NEXT_PUBLIC_SUPABASE_URL.replace('https://', '')],
   },
 }
 

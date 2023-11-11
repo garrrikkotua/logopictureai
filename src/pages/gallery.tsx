@@ -1,13 +1,11 @@
 import { NextSeo } from "next-seo";
 import { Footer } from "@/components/website/footer.component";
 import { APP_NAME } from "@/lib/constants";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
   GalleryComponentGitHub,
   GalleryComponentCrowdDev,
 } from "@/components/website/gallery.component";
-import { CHECKOUT_URL_STARTER } from "@/lib/constants";
 import { CTA } from "@/components/website/cta.component";
 
 export default function Gallery() {

@@ -28,6 +28,20 @@ const handler: NextApiHandler = async (req, res) => {
 
     const outputs = body.output as string[];
 
+    const userData = await spb.rpc("get_user_id_by_email", { email: (email as string).toLowerCase() });
+    const userId = userData?.data?.[0]?.id as string;
+
+    // uploading images to supabase in parallel using Promise.all
+    // first, we download the images from the provided URLs
+    await Promise.all(outputs.map(async (output, i) => {
+      const response = await fetch(output);
+      const blob = await response.blob();
+      // then, we upload the downloaded images to supabase
+      await spb.storage.from("aipictures").upload(`${userId}/${generationId}/image-${i}.png`, blob, {
+        contentType: "image/png",
+      });
+    }));
+
     // mark generation as completed
     await spb
       .from("generations")
@@ -37,17 +51,17 @@ const handler: NextApiHandler = async (req, res) => {
     await resend.emails.send({
       from: "LogoPicture AI <igor@emails.logopictureai.com>",
       to: [email as string],
-      subject: "Your order has been delivered!",
+      subject: "Your pictures have been generated!",
       react: ResultEmailTemplate({
         email: email as string,
         numberOfPictures: body.input.num_outputs,
         prompt: body.input.prompt,
       }),
-      html: `<p>Hi ${email},</p><p>Your order has been delivered! Please see your pictures attached.</p><p>Thank you for using AIArtLogo!</p>`,
-      attachments: outputs.map((output, i) => ({
-        filename: `image-${i}.png`,
-        path: output,
-      })),
+      html: `<p>Hi ${email},</p><p>Your order has been delivered! You can find pictures in generations section in the app.</p><p>Thank you for using AIArtLogo!</p>`,
+      // attachments: outputs.map((output, i) => ({
+      //   filename: `image-${i}.png`,
+      //   path: output,
+      // })),
     });
   } catch (error) {
     console.error(error);
