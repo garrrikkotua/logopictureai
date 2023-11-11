@@ -1,6 +1,6 @@
 # LogoPicture AI
 
-![Logo](./assets/logo.png)
+![Logo](./public/showcase.png)
 
 ## Description
 
