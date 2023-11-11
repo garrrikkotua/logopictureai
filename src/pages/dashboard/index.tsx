@@ -183,7 +183,7 @@ const Dashboard = (
         // starting image generation
 
         try {
-          await fetch("/api/generate", {
+          const response = await fetch("/api/generate", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -198,12 +198,24 @@ const Dashboard = (
               conditioningScale,
             }),
           });
+
+          if (!response.ok) {
+            toast({
+              title: "Error",
+              description: "Something went wrong. Please try again later.",
+              className: "bg-red-500",
+            });
+            setIsLoading(false);
+            return;
+          }
         } catch (error) {
           toast({
             title: "Error",
             description: "Something went wrong. Please try again later.",
             className: "bg-red-500",
           });
+          setIsLoading(false);
+          return;
         }
 
         toast({
@@ -260,9 +272,10 @@ const Dashboard = (
               id="patternFile"
               name="patternFile"
               type="file"
-              accept="image/*"
+              accept=".png, .jpeg, .jpg"
               className="sr-only"
               onChange={onChangePicture}
+              required
             />
           </div>
           <div>
