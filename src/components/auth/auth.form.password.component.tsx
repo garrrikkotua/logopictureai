@@ -7,13 +7,22 @@ import { Loader2 } from "lucide-react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useToast } from "@/components/ui/use-toast";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
+  createAccount?: boolean;
+}
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export function UserAuthForm({
+  className,
+  createAccount = false,
+  ...props
+}: UserAuthFormProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const router = useRouter();
 
   const spb = useSupabaseClient();
   const { toast } = useToast();
@@ -22,12 +31,15 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     event.preventDefault();
     setIsLoading(true);
 
-    const { data, error } = await spb.auth.signInWithOtp({
-      email,
-      options: {
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/callback`,
-      },
-    });
+    let data, error;
+    if (createAccount) {
+      ({ data, error } = await spb.auth.signUp({ email, password }));
+    } else {
+      ({ data, error } = await spb.auth.signInWithPassword({
+        email,
+        password,
+      }));
+    }
     setError(error?.message ?? null);
     setIsLoading(false);
 
@@ -41,9 +53,15 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
     if (data) {
       toast({
-        title: "Check your email",
-        description: "We sent you a magic link to sign in.",
+        title: "Success",
+        description: createAccount
+          ? "Signed up successfully. Check your email to verify your account."
+          : "Signed in successfully.",
       });
+
+      if (!createAccount) {
+        router.push("/dashboard");
+      }
     }
   }
 
@@ -67,6 +85,18 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
+            <Label className="sr-only" htmlFor="password">
+              Password
+            </Label>
+            <Input
+              id="password"
+              placeholder="Password"
+              type="password"
+              disabled={isLoading}
+              required
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
             {error && (
               <p className="text-red-500 text-sm font-medium tracking-wide">
                 {error}
@@ -75,12 +105,17 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           </div>
           <Button disabled={isLoading}>
             {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            Sign In with Email
+            {createAccount ? "Create Account" : "Sign In"}
           </Button>
           <div className="text-center">
-            <Link href="/login/password">
-              Create account with password instead
+            <Link href={createAccount ? "/signin/password" : "/login/password"}>
+              {createAccount
+                ? "Have an account? Sign in"
+                : "Don't have an account? Sign up"}
             </Link>
+          </div>
+          <div className="text-center">
+            <Link href="/login">Or use magic link</Link>
           </div>
         </div>
       </form>
