@@ -12,8 +12,9 @@ export default function AuthenticationPage() {
               <h1 className="text-2xl font-semibold tracking-tight">
                 Create an account
               </h1>
-              <p className="text-sm text-muted-foreground">
-                Enter your email below to create your account
+              <p>
+                Please use the email associated with your purchase. You will
+                receive a login link in your email.
               </p>
             </div>
             <UserAuthForm />
