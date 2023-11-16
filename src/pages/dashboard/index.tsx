@@ -37,6 +37,7 @@ import {
   SPACE_PROMPTS,
   MOVIES_TV_PROMPTS,
 } from "@/lib/constants";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // Create authenticated Supabase Client
@@ -211,281 +212,302 @@ const Dashboard = (
           <Image src={pattern} alt="Selected Logo" width={400} height={400} />
         )}
       </div>
-      <form ref={formRef} onSubmit={handleSubmit}>
-        <div className="flex flex-col gap-4">
-          <h1 className="text-xl">Generate Logo Picture</h1>
-          <div>
-            <div className="flex flex-row gap-2 items-center">
-              <p className="mb-2">1.</p>
-              <input
-                className="hidden"
-                name="patternUrl"
-                value={pattern}
-                readOnly
-                required
-              />
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="secondary">Upload a logo</Button>
-                </PopoverTrigger>
-                <PopoverContent className="relative left-14 top-0 w-[600px]">
-                  <LogoPicker
-                    setPattern={setPattern}
-                    setOpenPopover={setOpenPopover}
+      <div>
+        <h1 className="text-xl pb-4">Generate</h1>
+        <Tabs defaultValue="picture" className="w-[400px]">
+          <TabsList>
+            <TabsTrigger value="picture">Picture</TabsTrigger>
+            <TabsTrigger value="video">Video</TabsTrigger>
+          </TabsList>
+          <TabsContent value="picture">
+            <form ref={formRef} onSubmit={handleSubmit}>
+              <div className="flex flex-col gap-4">
+                <div>
+                  <div className="flex flex-row gap-2 items-center">
+                    <p className="mb-2">1.</p>
+                    <input
+                      className="hidden"
+                      name="patternUrl"
+                      value={pattern}
+                      readOnly
+                      required
+                    />
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button variant="secondary">Upload a logo</Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="relative left-14 top-0 w-[600px]">
+                        <LogoPicker
+                          setPattern={setPattern}
+                          setOpenPopover={setOpenPopover}
+                        />
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                  <input
+                    id="patternFile"
+                    name="patternFile"
+                    type="file"
+                    accept=".png, .jpeg, .jpg"
+                    className="sr-only"
+                    onChange={onChangePicture}
+                    required
                   />
-                </PopoverContent>
-              </Popover>
-            </div>
-            <input
-              id="patternFile"
-              name="patternFile"
-              type="file"
-              accept=".png, .jpeg, .jpg"
-              className="sr-only"
-              onChange={onChangePicture}
-              required
-            />
-          </div>
-          <div>
-            <p className="mb-2">2. Image style</p>
-            <div className="flex flex-row gap-2">
-              <Textarea
-                placeholder={placeholder}
-                className="w-80"
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-                required
-              />
-              <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger>
-                  <Button variant="secondary" type="button">
-                    Pick a style
-                  </Button>
-                </SheetTrigger>
-                <SheetContent
-                  className="max-h-[80vh] overflow-y-auto"
-                  side="top"
-                >
-                  <SheetHeader>
-                    <SheetTitle>Collection of predefined prompts</SheetTitle>
-                    <SheetDescription>
-                      Choose a style from the list below
-                      <div className="flex flex-col gap-4">
-                        <div className="pt-4">
-                          <h2 className="text-xl text-black font-bold">
-                            Holidays 🎁
-                          </h2>
-                          <div className="flex flex-row gap-2 pt-4 flex-wrap">
-                            {Object.keys(HOLIDAY_PROMPTS).map((p, i) => (
-                              <div key={i}>
-                                <Button
-                                  variant="secondary"
-                                  onClick={() => {
-                                    setPrompt(
-                                      HOLIDAY_PROMPTS[
-                                        p as keyof typeof HOLIDAY_PROMPTS
-                                      ]
-                                    );
-                                    setIsOpen(false);
-                                  }}
-                                >
-                                  {p}
-                                </Button>
+                </div>
+                <div>
+                  <p className="mb-2">2. Image style</p>
+                  <div className="flex flex-row gap-2">
+                    <Textarea
+                      placeholder={placeholder}
+                      className="w-80"
+                      value={prompt}
+                      onChange={(e) => setPrompt(e.target.value)}
+                      required
+                    />
+                    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                      <SheetTrigger>
+                        <Button variant="secondary" type="button">
+                          Pick a style
+                        </Button>
+                      </SheetTrigger>
+                      <SheetContent
+                        className="max-h-[80vh] overflow-y-auto"
+                        side="top"
+                      >
+                        <SheetHeader>
+                          <SheetTitle>
+                            Collection of predefined prompts
+                          </SheetTitle>
+                          <SheetDescription>
+                            Choose a style from the list below
+                            <div className="flex flex-col gap-4">
+                              <div className="pt-4">
+                                <h2 className="text-xl text-black font-bold">
+                                  Holidays 🎁
+                                </h2>
+                                <div className="flex flex-row gap-2 pt-4 flex-wrap">
+                                  {Object.keys(HOLIDAY_PROMPTS).map((p, i) => (
+                                    <div key={i}>
+                                      <Button
+                                        variant="secondary"
+                                        onClick={() => {
+                                          setPrompt(
+                                            HOLIDAY_PROMPTS[
+                                              p as keyof typeof HOLIDAY_PROMPTS
+                                            ]
+                                          );
+                                          setIsOpen(false);
+                                        }}
+                                      >
+                                        {p}
+                                      </Button>
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div>
-                          <h2 className="text-xl text-black font-bold">
-                            Nature 🌳
-                          </h2>
-                          <div className="flex flex-row gap-2 pt-4 flex-wrap">
-                            {Object.keys(STYLE_PROMPTS).map((p, i) => (
-                              <div key={i}>
-                                <Button
-                                  variant="secondary"
-                                  onClick={() => {
-                                    setPrompt(
-                                      STYLE_PROMPTS[
-                                        p as keyof typeof STYLE_PROMPTS
-                                      ]
-                                    );
-                                    setIsOpen(false);
-                                  }}
-                                >
-                                  {p}
-                                </Button>
+                              <div>
+                                <h2 className="text-xl text-black font-bold">
+                                  Nature 🌳
+                                </h2>
+                                <div className="flex flex-row gap-2 pt-4 flex-wrap">
+                                  {Object.keys(STYLE_PROMPTS).map((p, i) => (
+                                    <div key={i}>
+                                      <Button
+                                        variant="secondary"
+                                        onClick={() => {
+                                          setPrompt(
+                                            STYLE_PROMPTS[
+                                              p as keyof typeof STYLE_PROMPTS
+                                            ]
+                                          );
+                                          setIsOpen(false);
+                                        }}
+                                      >
+                                        {p}
+                                      </Button>
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div>
-                          <h2 className="text-xl text-black font-bold">
-                            Food 🍣
-                          </h2>
-                          <div className="flex flex-row gap-2 pt-4 flex-wrap">
-                            {Object.keys(FOOD_PROMPTS).map((p, i) => (
-                              <div key={i}>
-                                <Button
-                                  variant="secondary"
-                                  onClick={() => {
-                                    setPrompt(
-                                      FOOD_PROMPTS[
-                                        p as keyof typeof FOOD_PROMPTS
-                                      ]
-                                    );
-                                    setIsOpen(false);
-                                  }}
-                                >
-                                  {p}
-                                </Button>
+                              <div>
+                                <h2 className="text-xl text-black font-bold">
+                                  Food 🍣
+                                </h2>
+                                <div className="flex flex-row gap-2 pt-4 flex-wrap">
+                                  {Object.keys(FOOD_PROMPTS).map((p, i) => (
+                                    <div key={i}>
+                                      <Button
+                                        variant="secondary"
+                                        onClick={() => {
+                                          setPrompt(
+                                            FOOD_PROMPTS[
+                                              p as keyof typeof FOOD_PROMPTS
+                                            ]
+                                          );
+                                          setIsOpen(false);
+                                        }}
+                                      >
+                                        {p}
+                                      </Button>
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div>
-                          <h2 className="text-xl text-black font-bold">
-                            Architecture 🏛️
-                          </h2>
-                          <div className="flex flex-row gap-2 pt-4 flex-wrap">
-                            {Object.keys(ARCHITECTURE_PROMPTS).map((p, i) => (
-                              <div key={i}>
-                                <Button
-                                  variant="secondary"
-                                  onClick={() => {
-                                    setPrompt(
-                                      ARCHITECTURE_PROMPTS[
-                                        p as keyof typeof ARCHITECTURE_PROMPTS
-                                      ]
-                                    );
-                                    setIsOpen(false);
-                                  }}
-                                >
-                                  {p}
-                                </Button>
+                              <div>
+                                <h2 className="text-xl text-black font-bold">
+                                  Architecture 🏛️
+                                </h2>
+                                <div className="flex flex-row gap-2 pt-4 flex-wrap">
+                                  {Object.keys(ARCHITECTURE_PROMPTS).map(
+                                    (p, i) => (
+                                      <div key={i}>
+                                        <Button
+                                          variant="secondary"
+                                          onClick={() => {
+                                            setPrompt(
+                                              ARCHITECTURE_PROMPTS[
+                                                p as keyof typeof ARCHITECTURE_PROMPTS
+                                              ]
+                                            );
+                                            setIsOpen(false);
+                                          }}
+                                        >
+                                          {p}
+                                        </Button>
+                                      </div>
+                                    )
+                                  )}
+                                </div>
                               </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div>
-                          <h2 className="text-xl text-black font-bold">
-                            Landmarks 🗽
-                          </h2>
-                          <div className="flex flex-row gap-2 pt-4 flex-wrap">
-                            {Object.keys(LANDMARK_PROMPTS).map((p, i) => (
-                              <div key={i}>
-                                <Button
-                                  variant="secondary"
-                                  onClick={() => {
-                                    setPrompt(
-                                      LANDMARK_PROMPTS[
-                                        p as keyof typeof LANDMARK_PROMPTS
-                                      ]
-                                    );
-                                    setIsOpen(false);
-                                  }}
-                                >
-                                  {p}
-                                </Button>
+                              <div>
+                                <h2 className="text-xl text-black font-bold">
+                                  Landmarks 🗽
+                                </h2>
+                                <div className="flex flex-row gap-2 pt-4 flex-wrap">
+                                  {Object.keys(LANDMARK_PROMPTS).map((p, i) => (
+                                    <div key={i}>
+                                      <Button
+                                        variant="secondary"
+                                        onClick={() => {
+                                          setPrompt(
+                                            LANDMARK_PROMPTS[
+                                              p as keyof typeof LANDMARK_PROMPTS
+                                            ]
+                                          );
+                                          setIsOpen(false);
+                                        }}
+                                      >
+                                        {p}
+                                      </Button>
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div>
-                          <h2 className="text-xl text-black font-bold">
-                            Space 🚀
-                          </h2>
-                          <div className="flex flex-row gap-2 pt-4 flex-wrap">
-                            {Object.keys(SPACE_PROMPTS).map((p, i) => (
-                              <div key={i}>
-                                <Button
-                                  variant="secondary"
-                                  onClick={() => {
-                                    setPrompt(
-                                      SPACE_PROMPTS[
-                                        p as keyof typeof SPACE_PROMPTS
-                                      ]
-                                    );
-                                    setIsOpen(false);
-                                  }}
-                                >
-                                  {p}
-                                </Button>
+                              <div>
+                                <h2 className="text-xl text-black font-bold">
+                                  Space 🚀
+                                </h2>
+                                <div className="flex flex-row gap-2 pt-4 flex-wrap">
+                                  {Object.keys(SPACE_PROMPTS).map((p, i) => (
+                                    <div key={i}>
+                                      <Button
+                                        variant="secondary"
+                                        onClick={() => {
+                                          setPrompt(
+                                            SPACE_PROMPTS[
+                                              p as keyof typeof SPACE_PROMPTS
+                                            ]
+                                          );
+                                          setIsOpen(false);
+                                        }}
+                                      >
+                                        {p}
+                                      </Button>
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div>
-                          <h2 className="text-xl text-black font-bold">
-                            Movies & TV 🎬
-                          </h2>
-                          <div className="flex flex-row gap-2 pt-4 flex-wrap">
-                            {Object.keys(MOVIES_TV_PROMPTS).map((p, i) => (
-                              <div key={i}>
-                                <Button
-                                  variant="secondary"
-                                  onClick={() => {
-                                    setPrompt(
-                                      MOVIES_TV_PROMPTS[
-                                        p as keyof typeof MOVIES_TV_PROMPTS
-                                      ]
-                                    );
-                                    setIsOpen(false);
-                                  }}
-                                >
-                                  {p}
-                                </Button>
+                              <div>
+                                <h2 className="text-xl text-black font-bold">
+                                  Movies & TV 🎬
+                                </h2>
+                                <div className="flex flex-row gap-2 pt-4 flex-wrap">
+                                  {Object.keys(MOVIES_TV_PROMPTS).map(
+                                    (p, i) => (
+                                      <div key={i}>
+                                        <Button
+                                          variant="secondary"
+                                          onClick={() => {
+                                            setPrompt(
+                                              MOVIES_TV_PROMPTS[
+                                                p as keyof typeof MOVIES_TV_PROMPTS
+                                              ]
+                                            );
+                                            setIsOpen(false);
+                                          }}
+                                        >
+                                          {p}
+                                        </Button>
+                                      </div>
+                                    )
+                                  )}
+                                </div>
                               </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </SheetDescription>
-                  </SheetHeader>
-                </SheetContent>
-              </Sheet>
-            </div>
-          </div>
-          <div>
-            <p className="mb-2">3. Number of images to generate (variations)</p>
-            <div className="mt-4 flex flex-row gap-4">
-              <Slider
-                max={4}
-                step={1}
-                min={1}
-                value={[numberOfPictures]}
-                onValueChange={(value) => setNumberOfPictures(value[0])}
-              />
-              {numberOfPictures}
-            </div>
-            <p className="mt-4">Note: one picture takes one credit</p>
-          </div>
-          <div>
-            <p className="mb-2">4. Scale for logo visibility</p>
-            <div className="mt-4 flex flex-row gap-4">
-              <Slider
-                defaultValue={[1.5]}
-                max={4}
-                step={0.1}
-                min={1}
-                value={[conditioningScale]}
-                onValueChange={(value) => setConditioningScale(value[0])}
-              />
-              {conditioningScale}
-            </div>
-          </div>
-        </div>
-        {isLoading ? (
-          <Button className="mt-4" disabled variant="default">
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Please wait
-          </Button>
-        ) : (
-          <Button className="mt-4" type="submit" variant="default">
-            Generate pictures
-          </Button>
-        )}
-      </form>
+                            </div>
+                          </SheetDescription>
+                        </SheetHeader>
+                      </SheetContent>
+                    </Sheet>
+                  </div>
+                </div>
+                <div>
+                  <p className="mb-2">
+                    3. Number of images to generate (variations)
+                  </p>
+                  <div className="mt-4 flex flex-row gap-4">
+                    <Slider
+                      max={4}
+                      step={1}
+                      min={1}
+                      value={[numberOfPictures]}
+                      onValueChange={(value) => setNumberOfPictures(value[0])}
+                    />
+                    {numberOfPictures}
+                  </div>
+                  <p className="mt-4">Note: one picture takes one credit</p>
+                </div>
+                <div>
+                  <p className="mb-2">4. Scale for logo visibility</p>
+                  <div className="mt-4 flex flex-row gap-4">
+                    <Slider
+                      defaultValue={[1.5]}
+                      max={4}
+                      step={0.1}
+                      min={1}
+                      value={[conditioningScale]}
+                      onValueChange={(value) => setConditioningScale(value[0])}
+                    />
+                    {conditioningScale}
+                  </div>
+                </div>
+              </div>
+              {isLoading ? (
+                <Button className="mt-4" disabled variant="default">
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait
+                </Button>
+              ) : (
+                <Button className="mt-4" type="submit" variant="default">
+                  Generate pictures
+                </Button>
+              )}
+            </form>
+          </TabsContent>
+          <TabsContent value="video">
+            Videos with your logo are coming soon! Stay tuned!
+          </TabsContent>
+        </Tabs>
+      </div>
     </div>
   );
 };

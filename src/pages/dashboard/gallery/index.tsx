@@ -3,17 +3,14 @@ import { useUser } from "@supabase/auth-helpers-react";
 import { useQuery } from "@tanstack/react-query";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Database } from "@/lib/types/supabase";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import PhotoBooth from "@/components/dashboard/booth.component";
-import { CheckCircle, Clock } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 const generatePicUrl = (
   userId: string,
@@ -27,23 +24,29 @@ const GalleryDetail = ({
   id,
   status,
   numberOfPictures,
+  promptStr,
 }: {
   id: string;
   status: string;
   numberOfPictures: number;
+  promptStr: string;
 }) => {
   const user = useUser();
   if (status == "pending") {
     return (
       <div>
         <p className="text-xl">Your generation is not ready yet</p>
+        <div className="flex flex-row gap-8">
+          {Array.from(Array(numberOfPictures).keys()).map((index) => (
+            <Skeleton key={index} className="w-32 h-32" />
+          ))}
+        </div>
       </div>
     );
   }
 
   return (
     <div>
-      <p className="text-xl">Your generation is ready</p>
       <div className="flex flex-row gap-8">
         {Array.from(Array(numberOfPictures).keys()).map((index) => (
           <PhotoBooth
@@ -53,6 +56,12 @@ const GalleryDetail = ({
           />
         ))}
       </div>
+      <Popover>
+        <PopoverTrigger className="mt-4 ml-2">Prompt</PopoverTrigger>
+        <PopoverContent>
+          Prompt: <span className="font-semibold">{promptStr}</span>
+        </PopoverContent>
+      </Popover>
     </div>
   );
 };
@@ -75,59 +84,18 @@ const Gallery = () => {
   });
   return (
     <div>
-      <h1 className="text-xl">Gallery</h1>
-      <div className="flex flex-row text-lg font-bold mb-4">
-        <div className="w-1/4">Status</div>
-        <div className="w-1/4">Created At</div>
-        <div className="w-1/4">Prompt</div>
-        <div className="w-1/4">Number of Pictures</div>
-        <div className="w-1/4">Actions</div>
-      </div>
+      <h1 className="text-xl pb-4">Gallery</h1>
       {generations?.map((generation) => (
         <div
           key={generation.id}
-          className="flex flex-row bg-gray-200 rounded-lg p-4 mb-4"
+          className="flex flex-col bg-gray-200 rounded-lg p-4 mb-4"
         >
-          <div className="w-1/4">
-            {generation.status === "pending" ? (
-              <>
-                <Clock className="text-yellow-500" />
-                {generation.status}
-              </>
-            ) : (
-              <>
-                <CheckCircle className="text-green-500" />
-                {generation.status}
-              </>
-            )}
-          </div>
-          <div className="w-1/4">
-            {new Date(generation.created_at).toLocaleString()}
-          </div>
-          <div className="w-1/4">{generation.prompt}</div>
-          <div className="w-1/4">{generation.number_of_pictures}</div>
-          <div className="w-1/4">
-            <Sheet>
-              <SheetTrigger>
-                <Button variant="ghost">Show pictures</Button>
-              </SheetTrigger>
-              <SheetContent side="top" className="h-3/4">
-                <SheetHeader>
-                  <SheetTitle>Generation {generation.id}</SheetTitle>
-                  <SheetDescription>
-                    {new Date(generation.created_at).toLocaleString()}
-                  </SheetDescription>
-                </SheetHeader>
-                <div className="mt-4">
-                  <GalleryDetail
-                    id={generation.id}
-                    status={generation.status}
-                    numberOfPictures={generation.number_of_pictures}
-                  />
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
+          <GalleryDetail
+            id={generation.id}
+            status={generation.status}
+            numberOfPictures={generation.number_of_pictures}
+            promptStr={generation.prompt as string}
+          />
         </div>
       ))}
     </div>

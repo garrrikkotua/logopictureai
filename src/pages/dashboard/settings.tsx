@@ -6,6 +6,7 @@ import { Database } from "@/lib/types/supabase";
 import { Button } from "@/components/ui/button";
 import { CHECKOUT_URL_STARTER, CUSTOMER_PORTAL_URL } from "@/lib/constants";
 import Link from "next/link";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Settings = () => {
   const user = useUser();

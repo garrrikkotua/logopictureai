@@ -57,7 +57,7 @@ const handler: NextApiHandler = async (req, res) => {
         numberOfPictures: body.input.num_outputs,
         prompt: body.input.prompt,
       }),
-      html: `<p>Hi ${email},</p><p>Your order has been delivered! You can find pictures in generations section in the app.</p><p>Thank you for using AIArtLogo!</p>`,
+      html: `<p>Hi ${email},</p><p>Your order has been delivered! You can find pictures in generations section in the app.</p><p>Thank you for using LogoPicture AI!</p>`,
       // attachments: outputs.map((output, i) => ({
       //   filename: `image-${i}.png`,
       //   path: output,
