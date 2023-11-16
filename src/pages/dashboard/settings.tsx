@@ -59,9 +59,6 @@ const Settings = () => {
           </a>
         </p>
       </div>
-      <div className="pt-4">
-        <h1 className="text-xl">Change password</h1>
-      </div>
     </div>
   );
 };

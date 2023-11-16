@@ -80,6 +80,13 @@ export function Sidebar({ className }: SidebarProps) {
             >
               <Link href="/dashboard/settings">Settings</Link>
             </Button>
+            <Button
+              variant={isActive("/dashboard/api") ? "secondary" : "ghost"}
+              className="w-full justify-start"
+              asChild
+            >
+              <Link href="/dashboard/api">API</Link>
+            </Button>
           </div>
         </div>
       </div>

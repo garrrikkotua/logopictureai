@@ -28,47 +28,15 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useMemo } from "react";
-
-const prompts = {
-  "Mystic Forest":
-    "A mystical forest with towering trees, vibrant foliage, and a serene stream flowing through. The scene is bathed in soft, dappled sunlight filtering through the dense canopy above. No human presence is visible.",
-  "Mountain Majesty":
-    "A majestic mountain landscape under a clear sky. Snow-capped peaks rise in the distance, while a lush valley spreads out below. The scene is devoid of any human elements, focusing solely on the raw beauty of nature.",
-  "Desert Dunes":
-    "An expansive desert landscape with rolling sand dunes under a blazing sun. The scene is devoid of any vegetation or human presence, emphasizing the harsh yet beautiful solitude of the desert.",
-  "Ocean Calm":
-    "A calm ocean scene with gentle waves lapping against a sandy beach. The horizon stretches out infinitely, meeting a clear sky. The scene is devoid of any human elements, focusing on the tranquil beauty of the seascape.",
-  "City Nights":
-    "A bustling cityscape under the cover of night. Bright neon lights reflect off wet streets, while towering skyscrapers reach for the starless sky. The scene is devoid of any natural elements, focusing on the vibrant life of the urban jungle.",
-  "Winter Wonderland":
-    "A serene winter landscape blanketed in fresh snow. Bare trees stand against the stark white, their branches heavy with frost. The scene is devoid of any human elements, focusing on the quiet beauty of the winter season.",
-  "Spring Awakening":
-    "A vibrant spring landscape with blooming flowers and lush greenery. The scene is filled with the sounds of chirping birds and a gentle breeze rustling the leaves. No human presence is visible.",
-  "Summer Solstice":
-    "A bright summer landscape with a golden sun shining down on a field of sunflowers. The scene is filled with the buzz of insects and the scent of fresh earth. No human presence is visible.",
-  "Autumn Landscape`":
-    "A rich autumn landscape with trees ablaze in hues of red and gold. The scene is filled with the crisp scent of fallen leaves and the sound of them crunching underfoot. No human presence is visible.",
-  "Tropical Paradise":
-    "A lush tropical landscape with palm trees swaying in the breeze and crystal clear waters lapping at the shore. The scene is filled with the sound of distant waves and the scent of salt in the air. No human presence is visible.",
-  "Rainforest Retreat":
-    "A dense rainforest landscape with towering trees and a diverse array of flora and fauna. The scene is filled with the sound of distant waterfalls and the calls of exotic birds. No human presence is visible.",
-  "Arctic Adventure":
-    "A stark arctic landscape with snow-covered plains stretching out to the horizon. The scene is filled with the sound of the wind whistling through the icy expanse and the distant call of a lone wolf. No human presence is visible.",
-  "Fiery Fervor":
-    "A captivating scene of a roaring bonfire under the starlit sky. The crackling flames dance passionately, casting a warm glow on the surrounding area. The scene is filled with the comforting scent of burning wood and the mesmerizing sound of fire. No human presence is visible.",
-  "Cloudy Skies":
-    "A cloudy sky with the sun peeking through the clouds. The scene is filled with the sound of birds chirping and the scent of fresh air. No human presence is visible.",
-  "Starry Night":
-    "A starry night sky with the moon shining brightly. The scene is filled with the sound of crickets chirping and the scent of fresh air. No human presence is visible.",
-  "Sunset at the Beach":
-    "A beautiful sunset at the beach. The scene is filled with the sound of waves crashing and the scent of salt in the air. No human presence is visible.",
-  "Sunrise at the Beach":
-    "A beautiful sunrise at the beach. The scene is filled with the sound of waves crashing and the scent of salt in the air. No human presence is visible.",
-  "Taco Party":
-    "A taco party with a variety of tacos and toppings. The scene is filled with the sound of people eating and the scent of delicious food. No human presence is visible.",
-  "Spilled Coffee Beans":
-    "A pile of spilled coffee beans. The scene is filled with the sound of beans rolling and the scent of coffee. No human presence is visible.",
-};
+import {
+  STYLE_PROMPTS,
+  FOOD_PROMPTS,
+  HOLIDAY_PROMPTS,
+  ARCHITECTURE_PROMPTS,
+  LANDMARK_PROMPTS,
+  SPACE_PROMPTS,
+  MOVIES_TV_PROMPTS,
+} from "@/lib/constants";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // Create authenticated Supabase Client
@@ -279,7 +247,7 @@ const Dashboard = (
             />
           </div>
           <div>
-            <p className="mb-2">2. Image prompt</p>
+            <p className="mb-2">2. Image style</p>
             <div className="flex flex-row gap-2">
               <Textarea
                 placeholder={placeholder}
@@ -294,53 +262,183 @@ const Dashboard = (
                     Pick a style
                   </Button>
                 </SheetTrigger>
-                <SheetContent>
+                <SheetContent
+                  className="max-h-[80vh] overflow-y-auto"
+                  side="top"
+                >
                   <SheetHeader>
                     <SheetTitle>Collection of predefined prompts</SheetTitle>
                     <SheetDescription>
-                      Choose a prompt from the list below
-                      <div className="flex flex-col gap-2 pt-4">
-                        {Object.keys(prompts).map((p, i) => (
-                          <div
-                            key={i}
-                            className="flex flex-row justify-between items-center"
-                          >
-                            <p>{p}</p>
-                            <Button
-                              variant="secondary"
-                              onClick={() => {
-                                setPrompt(prompts[p as keyof typeof prompts]);
-                                setIsOpen(false);
-                              }}
-                            >
-                              Pick
-                            </Button>
+                      Choose a style from the list below
+                      <div className="flex flex-col gap-4">
+                        <div className="pt-4">
+                          <h2 className="text-xl text-black font-bold">
+                            Holidays 🎁
+                          </h2>
+                          <div className="flex flex-row gap-2 pt-4 flex-wrap">
+                            {Object.keys(HOLIDAY_PROMPTS).map((p, i) => (
+                              <div key={i}>
+                                <Button
+                                  variant="secondary"
+                                  onClick={() => {
+                                    setPrompt(
+                                      HOLIDAY_PROMPTS[
+                                        p as keyof typeof HOLIDAY_PROMPTS
+                                      ]
+                                    );
+                                    setIsOpen(false);
+                                  }}
+                                >
+                                  {p}
+                                </Button>
+                              </div>
+                            ))}
                           </div>
-                        ))}
-                        <hr />
-                        Or generate a random prompt
-                        <div className="flex flex-row justify-between items-center">
-                          <p className="text-sm">
-                            {randomPrompt || "Click the button below"}
-                          </p>
-                          <Button
-                            variant="secondary"
-                            onClick={() => {
-                              setPrompt(randomPrompt);
-                              setIsOpen(false);
-                            }}
-                          >
-                            Pick
-                          </Button>
                         </div>
-                        <Button
-                          variant="secondary"
-                          onClick={() => {
-                            setRandomPrompt(promptmaker());
-                          }}
-                        >
-                          Generate
-                        </Button>
+                        <div>
+                          <h2 className="text-xl text-black font-bold">
+                            Nature 🌳
+                          </h2>
+                          <div className="flex flex-row gap-2 pt-4 flex-wrap">
+                            {Object.keys(STYLE_PROMPTS).map((p, i) => (
+                              <div key={i}>
+                                <Button
+                                  variant="secondary"
+                                  onClick={() => {
+                                    setPrompt(
+                                      STYLE_PROMPTS[
+                                        p as keyof typeof STYLE_PROMPTS
+                                      ]
+                                    );
+                                    setIsOpen(false);
+                                  }}
+                                >
+                                  {p}
+                                </Button>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div>
+                          <h2 className="text-xl text-black font-bold">
+                            Food 🍣
+                          </h2>
+                          <div className="flex flex-row gap-2 pt-4 flex-wrap">
+                            {Object.keys(FOOD_PROMPTS).map((p, i) => (
+                              <div key={i}>
+                                <Button
+                                  variant="secondary"
+                                  onClick={() => {
+                                    setPrompt(
+                                      FOOD_PROMPTS[
+                                        p as keyof typeof FOOD_PROMPTS
+                                      ]
+                                    );
+                                    setIsOpen(false);
+                                  }}
+                                >
+                                  {p}
+                                </Button>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div>
+                          <h2 className="text-xl text-black font-bold">
+                            Architecture 🏛️
+                          </h2>
+                          <div className="flex flex-row gap-2 pt-4 flex-wrap">
+                            {Object.keys(ARCHITECTURE_PROMPTS).map((p, i) => (
+                              <div key={i}>
+                                <Button
+                                  variant="secondary"
+                                  onClick={() => {
+                                    setPrompt(
+                                      ARCHITECTURE_PROMPTS[
+                                        p as keyof typeof ARCHITECTURE_PROMPTS
+                                      ]
+                                    );
+                                    setIsOpen(false);
+                                  }}
+                                >
+                                  {p}
+                                </Button>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div>
+                          <h2 className="text-xl text-black font-bold">
+                            Landmarks 🗽
+                          </h2>
+                          <div className="flex flex-row gap-2 pt-4 flex-wrap">
+                            {Object.keys(LANDMARK_PROMPTS).map((p, i) => (
+                              <div key={i}>
+                                <Button
+                                  variant="secondary"
+                                  onClick={() => {
+                                    setPrompt(
+                                      LANDMARK_PROMPTS[
+                                        p as keyof typeof LANDMARK_PROMPTS
+                                      ]
+                                    );
+                                    setIsOpen(false);
+                                  }}
+                                >
+                                  {p}
+                                </Button>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div>
+                          <h2 className="text-xl text-black font-bold">
+                            Space 🚀
+                          </h2>
+                          <div className="flex flex-row gap-2 pt-4 flex-wrap">
+                            {Object.keys(SPACE_PROMPTS).map((p, i) => (
+                              <div key={i}>
+                                <Button
+                                  variant="secondary"
+                                  onClick={() => {
+                                    setPrompt(
+                                      SPACE_PROMPTS[
+                                        p as keyof typeof SPACE_PROMPTS
+                                      ]
+                                    );
+                                    setIsOpen(false);
+                                  }}
+                                >
+                                  {p}
+                                </Button>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div>
+                          <h2 className="text-xl text-black font-bold">
+                            Movies & TV 🎬
+                          </h2>
+                          <div className="flex flex-row gap-2 pt-4 flex-wrap">
+                            {Object.keys(MOVIES_TV_PROMPTS).map((p, i) => (
+                              <div key={i}>
+                                <Button
+                                  variant="secondary"
+                                  onClick={() => {
+                                    setPrompt(
+                                      MOVIES_TV_PROMPTS[
+                                        p as keyof typeof MOVIES_TV_PROMPTS
+                                      ]
+                                    );
+                                    setIsOpen(false);
+                                  }}
+                                >
+                                  {p}
+                                </Button>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       </div>
                     </SheetDescription>
                   </SheetHeader>
@@ -363,10 +461,7 @@ const Dashboard = (
             <p className="mt-4">Note: one picture takes one credit</p>
           </div>
           <div>
-            <p className="mb-2">
-              4. Conditioning scale (how strongly logo will be visible in the
-              picture)
-            </p>
+            <p className="mb-2">4. Scale for logo visibility</p>
             <div className="mt-4 flex flex-row gap-4">
               <Slider
                 defaultValue={[1.5]}

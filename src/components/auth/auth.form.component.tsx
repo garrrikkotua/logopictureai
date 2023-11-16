@@ -77,11 +77,11 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             Sign In with Email
           </Button>
-          <div className="text-center">
+          {/* <div className="text-center">
             <Link href="/login/password">
               Create account with password instead
             </Link>
-          </div>
+          </div> */}
         </div>
       </form>
     </div>

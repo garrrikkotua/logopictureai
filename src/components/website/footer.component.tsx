@@ -125,7 +125,6 @@ export const Footer = () => {
                   Gallery{" "}
                 </Link>
               </li>
-
               <li>
                 <Link
                   href="/blog"
@@ -135,7 +134,6 @@ export const Footer = () => {
                   Blog{" "}
                 </Link>
               </li>
-
               <li>
                 <Link
                   href="/#pricing"
@@ -146,15 +144,14 @@ export const Footer = () => {
                   Pricing{" "}
                 </Link>
               </li>
-
               <li>
                 <Link
-                  href="/#faq"
+                  href="https://tally.so/r/wMEakp"
                   title=""
                   className="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                 >
                   {" "}
-                  Frequently Asked Questions{" "}
+                  API{" "}
                 </Link>
               </li>
 
