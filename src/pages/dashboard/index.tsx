@@ -7,7 +7,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import LogoPicker from "@/components/dashboard/logo.picker.component";
+import LogoPicker, {
+  addWhiteBackground,
+} from "@/components/dashboard/logo.picker.component";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -102,8 +104,14 @@ const Dashboard = (
       } else {
         const reader = new FileReader();
         reader.onload = (e) => {
-          setPattern(e.target?.result as string);
-          setOpenPopover(false);
+          addWhiteBackground(e.target?.result as string)
+            .then((newDataUrl) => {
+              setPattern(newDataUrl as string);
+              setOpenPopover(false);
+            })
+            .catch((error) => {
+              console.error("Error adding white background:", error);
+            });
         };
         reader.readAsDataURL(file);
       }

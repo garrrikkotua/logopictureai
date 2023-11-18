@@ -5,6 +5,42 @@ import { useToast } from "@/components/ui/use-toast";
 
 const patterns: string[] = [];
 
+export function addWhiteBackground(dataUrl: string) {
+  return new Promise((resolve, reject) => {
+    // Create an image element
+    const img = document.createElement("img");
+
+    // When the image is loaded, draw it on the canvas
+    img.onload = () => {
+      // Create a canvas element
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      // Get the context of the canvas
+      const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+      // Draw a white background
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw the image on top of the background
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      // Get the data URL of the new image
+      const newDataUrl = canvas.toDataURL("image/png");
+
+      resolve(newDataUrl);
+    };
+
+    // When there's an error loading the image, reject the promise
+    img.onerror = reject;
+
+    // Start loading the image
+    img.src = dataUrl;
+  });
+}
+
 export default function LogoPicker({
   setPattern,
   setOpenPopover,
@@ -98,8 +134,20 @@ export default function LogoPicker({
                 } else {
                   const reader = new FileReader();
                   reader.onload = (e) => {
-                    setPattern(e.target?.result as string);
-                    setOpenPopover(false);
+                    addWhiteBackground(e.target?.result as string)
+                      .then((newDataUrl) => {
+                        setPattern(newDataUrl as string);
+                        setOpenPopover(false);
+                      })
+                      .catch((error) => {
+                        console.error(error);
+                        toast({
+                          title: "Error",
+                          description:
+                            "Error adding white background to image. Please try again.",
+                          className: "bg-red-500",
+                        });
+                      });
                   };
                   reader.readAsDataURL(file);
                 }
