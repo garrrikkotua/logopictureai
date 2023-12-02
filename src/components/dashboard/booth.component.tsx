@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { Database } from "@/lib/types/supabase";
 import { useToast } from "@/components/ui/use-toast";
+import { cn } from "@/lib/utils";
 
 function forceDownload(blobUrl: string, filename: string) {
   let a: any = document.createElement("a");
@@ -28,9 +29,11 @@ function forceDownload(blobUrl: string, filename: string) {
 export default function PhotoBooth({
   image,
   name,
+  enableUpscale = true,
 }: {
   image: string;
   name: string;
+  enableUpscale?: boolean;
 }) {
   const [copying, setCopying] = useState(false);
   const [downloading, setDownloading] = useState(false);
@@ -162,7 +165,15 @@ export default function PhotoBooth({
           </button>
           <Dialog>
             <DialogTrigger asChild>
-              <button className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all hover:scale-105 active:scale-95">
+              <button
+                disabled={isSubmitting || !enableUpscale}
+                className={cn(
+                  "flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all hover:scale-105 active:scale-95",
+                  {
+                    hidden: !enableUpscale,
+                  }
+                )}
+              >
                 <Maximize2 className="h-4 w-4 text-gray-500" />
               </button>
             </DialogTrigger>
@@ -186,8 +197,9 @@ export default function PhotoBooth({
                     You will receiive an email with the upscaled image. This
                     operation <b>costs 1 credit.</b>
                     <Button
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || !enableUpscale}
                       onClick={() => handleClick()}
+                      hidden={!enableUpscale}
                     >
                       Upscale
                     </Button>

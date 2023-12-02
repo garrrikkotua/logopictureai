@@ -157,12 +157,12 @@ export const Footer = () => {
 
               <li>
                 <Link
-                  href="https://octoart.vercel.app/"
+                  href="/redesign-your-logo"
                   title=""
                   className="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                 >
                   {" "}
-                  Octoart{" "}
+                  Redesign your logo with DALL-E 3 and GPT Vision
                 </Link>
               </li>
             </ul>

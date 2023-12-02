@@ -39,6 +39,7 @@
     "next": "13.5.5",
     "next-seo": "^6.4.0",
     "next-sitemap": "^4.2.3",
+    "openai": "^4.20.1",
     "promptmaker": "^1.1.0",
     "react": "^18",
     "react-dom": "^18",
