@@ -1,66 +1,19 @@
 import { Montserrat } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import {
-  APP_NAME,
-  CHECKOUT_URL_STARTER,
-  CHECKOUT_URL_GROWTH,
-  CHECKOUT_URL_SCALE,
-} from "@/lib/constants";
+import { APP_NAME } from "@/lib/constants";
 import Image from "next/image";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { NextSeo } from "next-seo";
-import { Footer } from "@/components/website/footer.component";
-import { GalleryComponentGitHub } from "@/components/website/gallery.component";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { CTA } from "@/components/website/cta.component";
-import { createPagesServerClient } from "@supabase/auth-helpers-nextjs";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
-import { DashboardLayout } from "@/layouts/dashboard.layout";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import LogoPicker, {
   addWhiteBackground,
 } from "@/components/dashboard/logo.picker.component";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
-import useEnterSubmit from "@/lib/hooks/use-enter-submit";
-import { Textarea } from "@/components/ui/textarea";
-import { Database } from "@/lib/types/supabase";
-import { Slider } from "@/components/ui/slider";
 import { Loader2 } from "lucide-react";
-// @ts-ignore
-import promptmaker from "promptmaker";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { useMemo } from "react";
-import {
-  STYLE_PROMPTS,
-  FOOD_PROMPTS,
-  HOLIDAY_PROMPTS,
-  ARCHITECTURE_PROMPTS,
-  LANDMARK_PROMPTS,
-  SPACE_PROMPTS,
-  MOVIES_TV_PROMPTS,
-} from "@/lib/constants";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRef } from "react";
 import PhotoBooth from "@/components/dashboard/booth.component";
+import { CTA } from "@/components/website/cta.component";
+import { Footer } from "@/components/website/footer.component";
 
 const font = Montserrat({ subsets: ["latin"] });
 
@@ -281,6 +234,12 @@ export default function Home() {
               </Button>
             </div>
           )}
+        </section>
+        <section className="pt-2">
+          <CTA />
+        </section>
+        <section className="pt-2">
+          <Footer />
         </section>
       </main>
     </>

@@ -6,7 +6,6 @@ import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useToast } from "@/components/ui/use-toast";
-import Link from "next/link";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
