@@ -263,11 +263,11 @@ export default function Home() {
   return (
     <>
       <NextSeo
-        title="LogoPicture AI - Create optical illusion art with your logo"
-        description="Get AI optical illusion art with your logo in few minutes. Upload logos, pick your styles & generate 50+ pictures. One-time payment."
+        title="LogoPicture AI - Redesign your logo with AI"
+        description="Get AI logo redesign in few minutes. Upload logos, pick your styles & generate 50+ pictures. One-time payment."
         openGraph={{
           url: "https://logopictureai.com",
-          title: "LogoPicture AI - Create optical illusion art with your logo",
+          title: "LogoPicture AI - Redesign your logo with AI",
           description:
             "Get AI optical illusion art with your logo in few minutes. Upload logos, pick your styles & generate 50+ pictures. One-time payment.",
           images: [
@@ -275,7 +275,7 @@ export default function Home() {
               url: "https://logopictureai.com/og.png",
               width: 3100,
               height: 1624,
-              alt: "LogoPicture AI - Create optical illusion art with your logo",
+              alt: "LogoPicture AI - Redesign your logo with AI",
               type: "image/png",
             },
           ],
@@ -293,19 +293,19 @@ export default function Home() {
                   {APP_NAME}
                 </p>
                 <h1 className="mt-4 text-2xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px]">
-                  Create optical illusion art with your logo
+                  Redesign your logo with AI
                 </h1>
                 <ShowcaseMobile />
                 <p className="mt-4 sm:mt-8 text-[15px] text-black lg:mt-14 sm:text-2xl leading-[150%]">
-                  Get AI optical illusion art with your logo in few minutes.
-                  Upload logos, pick your styles & generate 50+ pictures.
+                  Get AI logo redesign in few minutes. Upload logos, pick your
+                  styles & generate 50+ pictures.
                 </p>
                 <p className="mt-4 sm:mt-8 text-[15px] text-black sm:text-2xl leading-[150%]">
-                  Picture ideas are limited only by your imagination. No ideas
-                  at all? This is not a problem, AI will offer you ideas.
+                  Looking for an easy way to refresh your logo? Having a special
+                  event and want to make it more memorable? We got you covered.
                 </p>
                 <p className="mt-4 sm:mt-8 text-[15px] text-black sm:text-2xl leading-[150%]">
-                  Try it right now!
+                  Redesign your logo right now!
                 </p>
 
                 <div className="pt-4">
@@ -321,16 +321,7 @@ export default function Home() {
                     element?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
-                  Start Generating
-                </Button>
-
-                <Button asChild variant="link">
-                  <Link
-                    href="/login"
-                    className="underline underline-offset-2 sm:text-2xl"
-                  >
-                    Or Login
-                  </Link>
+                  Redesign your logo
                 </Button>
               </div>
 
@@ -351,16 +342,6 @@ export default function Home() {
               </h2>
             </div>
             <div className="relative max-w-md mx-auto mt-12 md:max-w-none md:mt-20">
-              <div className="absolute inset-x-0 hidden top-36 xl:block">
-                <Image
-                  className="object-contain w-full h-auto max-w-xl mx-auto"
-                  src="https://cdn.rareblocks.xyz/collection/clarity/images/how-it-works/2/line-pattern.png"
-                  alt=""
-                  width="1036"
-                  height="240"
-                />
-              </div>
-
               <div className="grid grid-cols-1 text-center md:text-left md:grid-cols-3 md:gap-x-16 gap-y-6 xl:gap-x-32">
                 <div className="flex flex-col justify-between gap-4">
                   <div className="relative flex-shrink-0 mx-8 md:mx-0">
@@ -372,9 +353,9 @@ export default function Home() {
                     </div>
                     <Image
                       className="relative w-full h-auto mx-auto filter drop-shadow-lg scale-110"
-                      src="/upload.png"
+                      src="/lp-upload.gif"
                       alt="Upload Logo"
-                      width="400"
+                      width="800"
                       height="800"
                     />
                   </div>
@@ -399,11 +380,11 @@ export default function Home() {
                       ></div>
                     </div>
                     <Image
-                      className="relative w-full h-auto mx-auto filter drop-shadow-lg scale-95"
-                      src="/prompts.png"
+                      className="relative w-full h-auto mx-auto filter drop-shadow-lg scale-110"
+                      src="/lp-pick.gif"
                       alt="Predefined AI prompts for logo art"
-                      width="400"
-                      height="400"
+                      width="800"
+                      height="800"
                     />
                   </div>
 
@@ -412,8 +393,8 @@ export default function Home() {
                       Pick a style
                     </h3>
                     <p className="mt-4 text-base sm:text-xl font-normal leading-7 text-gray-600">
-                      Select a predefined prompt, generate a random one, or
-                      create your own.
+                      Select a predefined prompt (Hoildays, Nature, etc),
+                      generate a random one, or create your own.
                     </p>
                   </div>
                 </div>
@@ -427,21 +408,21 @@ export default function Home() {
                       ></div>
                     </div>
                     <Image
-                      className="relative w-full h-auto mx-auto filter drop-shadow-lg"
-                      src="/email.png"
-                      alt="Optical Illusion Art Generated from Logo delivered via email"
-                      width="400"
-                      height="400"
+                      className="relative w-full h-auto mx-auto filter drop-shadow-lg scale-110"
+                      src="/lp-gallery.gif"
+                      alt="Optical Illusion Art Gallery"
+                      width="800"
+                      height="800"
                     />
                   </div>
 
                   <div className="mt-6 md:mt-10 lg:mt-6 text-left sm:text-center">
                     <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
-                      Get pictures via email
+                      Get your pictures
                     </h3>
                     <p className="mt-4 text-base sm:text-xl font-normal leading-7 text-gray-600">
-                      All pictures are generated within a few minutes and will
-                      be delivered to your email.
+                      All pictures are available in the gallery. You can aslo
+                      upscale them up to 6x if needed.
                     </p>
                   </div>
                 </div>
@@ -477,7 +458,7 @@ export default function Home() {
               </p>
               <div className="flex flex-row w-full items-center">
                 <h2 className="mt-4 text-2xl font-bold text-black lg:mt-14 sm:text-5xl xl:text-[64px] max-w-3xl">
-                  Start generating logo art right now
+                  Redesign your logo with AI right now
                 </h2>
                 <div className="ml-auto ">
                   <Image
@@ -639,6 +620,16 @@ export default function Home() {
           </div>
         </section>
         <CTA />
+        <div className="text-xl mx-auto">
+          <Button asChild variant="link">
+            <Link
+              href="/login"
+              className="underline underline-offset-2 sm:text-2xl"
+            >
+              Customer Login
+            </Link>
+          </Button>
+        </div>
         <Footer />
       </main>
     </>

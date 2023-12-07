@@ -86,7 +86,7 @@ export const CTA = () => {
         <div className="relative px-8 py-10 overflow-hidden lg:px-24 md:py-20 bg-gray-50 border border-green-300 rounded-3xl">
           <div className="max-w-lg mx-auto text-center">
             <h2 className="text-2xl font-bold text-gray-900 sm:text-4xl xl:text-5xl font-pj">
-              Boost Your Designs with Optical Illusion Art
+              Redesign your logo with AI in few minutes
             </h2>
           </div>
 
