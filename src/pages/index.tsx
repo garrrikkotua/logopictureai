@@ -563,7 +563,8 @@ export default function Home() {
                       </AccordionTrigger>
                       <AccordionContent className="text-xl">
                         Pictures are generated within a few minutes. You will
-                        receive them via email once they are ready.
+                        see the results in the gallery. You will also receive an
+                        email once the pictures are ready.
                       </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-4">
