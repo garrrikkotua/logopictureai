@@ -107,6 +107,8 @@ const Showcase = () => {
             width={134}
             height={134}
             className="mx-auto"
+            priority
+            loading="eager"
           />
         </div>
         <span className="text-3xl font-semibold shrink-0">+ LogoPicture</span>
@@ -132,6 +134,8 @@ const Showcase = () => {
           width={190}
           height={190}
           className="rounded-3xl"
+          priority
+          loading="eager"
         />
 
         <Image
@@ -140,6 +144,8 @@ const Showcase = () => {
           width={190}
           height={190}
           className="rounded-3xl"
+          priority
+          loading="eager"
         />
         <Image
           src="/github/ocean.png"
@@ -147,6 +153,8 @@ const Showcase = () => {
           width={190}
           height={190}
           className="rounded-3xl"
+          priority
+          loading="eager"
         />
 
         <Image
@@ -155,6 +163,8 @@ const Showcase = () => {
           width={190}
           height={190}
           className="rounded-3xl"
+          priority
+          loading="eager"
         />
         <Link
           href="/gallery"
@@ -177,6 +187,8 @@ const ShowcaseMobile = () => {
             alt="Github Logo"
             width={90}
             height={90}
+            priority
+            loading="eager"
           />
         </div>
         <span className="sm:text-xl text-lg font-semibold shrink-0">
@@ -190,6 +202,8 @@ const ShowcaseMobile = () => {
           width={190}
           height={190}
           className="rounded-3xl"
+          priority
+          loading="eager"
         />
 
         <Image
@@ -198,6 +212,8 @@ const ShowcaseMobile = () => {
           width={190}
           height={190}
           className="rounded-3xl"
+          priority
+          loading="eager"
         />
         <Image
           src="/github/ocean.png"
@@ -205,6 +221,8 @@ const ShowcaseMobile = () => {
           width={190}
           height={190}
           className="rounded-3xl"
+          priority
+          loading="eager"
         />
 
         <Image
@@ -213,6 +231,8 @@ const ShowcaseMobile = () => {
           width={190}
           height={190}
           className="rounded-3xl"
+          priority
+          loading="eager"
         />
       </div>
     </div>
@@ -357,6 +377,7 @@ export default function Home() {
                       alt="Upload Logo"
                       width="800"
                       height="800"
+                      loading="lazy"
                     />
                   </div>
 
@@ -385,6 +406,7 @@ export default function Home() {
                       alt="Predefined AI prompts for logo art"
                       width="800"
                       height="800"
+                      loading="lazy"
                     />
                   </div>
 
@@ -413,6 +435,7 @@ export default function Home() {
                       alt="Optical Illusion Art Gallery"
                       width="800"
                       height="800"
+                      loading="lazy"
                     />
                   </div>
 
