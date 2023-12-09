@@ -19,6 +19,7 @@ import { Footer } from "@/components/website/footer.component";
 import { GalleryComponentGitHub } from "@/components/website/gallery.component";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CTA } from "@/components/website/cta.component";
+import { cdn } from "@/lib/utils";
 
 const font = Montserrat({ subsets: ["latin"] });
 
@@ -27,23 +28,23 @@ const Ratings = () => {
     <div className="flex flex-col lg:flex-row gap-2 lg:items-center space-x-4">
       <div className="flex overflow-hidden">
         <Avatar>
-          <AvatarImage src="/avt1.jpeg" />
+          <AvatarImage src={cdn("/avt1.jpeg")} />
           <AvatarFallback>LP</AvatarFallback>
         </Avatar>
         <Avatar>
-          <AvatarImage src="/avt2.jpeg" />
+          <AvatarImage src={cdn("/avt2.jpeg")} />
           <AvatarFallback>LP</AvatarFallback>
         </Avatar>
         <Avatar>
-          <AvatarImage src="/avt3.jpeg" />
+          <AvatarImage src={cdn("/avt3.jpeg")} />
           <AvatarFallback>LP</AvatarFallback>
         </Avatar>
         <Avatar>
-          <AvatarImage src="/avt4.jpeg" />
+          <AvatarImage src={cdn("/avt4.jpeg")} />
           <AvatarFallback>LP</AvatarFallback>
         </Avatar>
         <Avatar>
-          <AvatarImage src="/avt5.jpeg" />
+          <AvatarImage src={cdn("/avt5.jpeg")} />
           <AvatarFallback>LP</AvatarFallback>
         </Avatar>
       </div>
@@ -102,7 +103,7 @@ const Showcase = () => {
       <div className="flex flex-row gap-2 items-center mx-auto">
         <div>
           <Image
-            src="/github_simple_logo.png"
+            src={cdn("/github_simple_logo.png")}
             alt="Github Logo"
             width={134}
             height={134}
@@ -129,7 +130,7 @@ const Showcase = () => {
       </div>
       <div className="grid grid-cols-2 gap-8 mt-6 items-center justify-center mx-auto">
         <Image
-          src="/github/mech.jpeg"
+          src={cdn("/github/mech.jpeg")}
           alt="Github Mechanism Illustration"
           width={190}
           height={190}
@@ -139,7 +140,7 @@ const Showcase = () => {
         />
 
         <Image
-          src="/github/roman_garden.png"
+          src={cdn("/github/roman_garden.png")}
           alt="Github Roman Garden"
           width={190}
           height={190}
@@ -148,7 +149,7 @@ const Showcase = () => {
           loading="eager"
         />
         <Image
-          src="/github/ocean.png"
+          src={cdn("/github/ocean.png")}
           alt="Github Ocean View"
           width={190}
           height={190}
@@ -158,7 +159,7 @@ const Showcase = () => {
         />
 
         <Image
-          src="/github/alien_world.png"
+          src={cdn("/github/alien_world.png")}
           alt="Github Alien World"
           width={190}
           height={190}
@@ -183,7 +184,7 @@ const ShowcaseMobile = () => {
       <div className="flex flex-row gap-2 items-center">
         <div>
           <Image
-            src="/github_simple_logo.png"
+            src={cdn("/github_simple_logo.png")}
             alt="Github Logo"
             width={90}
             height={90}
@@ -197,7 +198,7 @@ const ShowcaseMobile = () => {
       </div>
       <div className="grid grid-cols-2 gap-4 mt-6 mr-auto">
         <Image
-          src="/github/mech.jpeg"
+          src={cdn("/github/mech.jpeg")}
           alt="Github Mechanism Illustration"
           width={190}
           height={190}
@@ -207,7 +208,7 @@ const ShowcaseMobile = () => {
         />
 
         <Image
-          src="/github/roman_garden.png"
+          src={cdn("/github/roman_garden.png")}
           alt="Github Roman Garden"
           width={190}
           height={190}
@@ -216,7 +217,7 @@ const ShowcaseMobile = () => {
           loading="eager"
         />
         <Image
-          src="/github/ocean.png"
+          src={cdn("/github/ocean.png")}
           alt="Github Ocean View"
           width={190}
           height={190}
@@ -226,7 +227,7 @@ const ShowcaseMobile = () => {
         />
 
         <Image
-          src="/github/alien_world.png"
+          src={cdn("/github/alien_world.png")}
           alt="Github Alien World"
           width={190}
           height={190}
@@ -373,7 +374,7 @@ export default function Home() {
                     </div>
                     <Image
                       className="relative w-full h-auto mx-auto filter drop-shadow-lg scale-110"
-                      src="/lp-upload.gif"
+                      src={cdn("/lp-upload.gif")}
                       alt="Upload Logo"
                       width="800"
                       height="800"
@@ -402,7 +403,7 @@ export default function Home() {
                     </div>
                     <Image
                       className="relative w-full h-auto mx-auto filter drop-shadow-lg scale-110"
-                      src="/lp-pick.gif"
+                      src={cdn("/lp-pick.gif")}
                       alt="Predefined AI prompts for logo art"
                       width="800"
                       height="800"
@@ -431,7 +432,7 @@ export default function Home() {
                     </div>
                     <Image
                       className="relative w-full h-auto mx-auto filter drop-shadow-lg scale-110"
-                      src="/lp-gallery.gif"
+                      src={cdn("/lp-gallery.gif")}
                       alt="Optical Illusion Art Gallery"
                       width="800"
                       height="800"
@@ -485,7 +486,7 @@ export default function Home() {
                 </h2>
                 <div className="ml-auto ">
                   <Image
-                    src="/lpanimation.gif"
+                    src={cdn("/lpanimation.gif")}
                     alt="LogoPicture AI Animation"
                     width="150"
                     height="150"
@@ -531,7 +532,7 @@ export default function Home() {
                     Answers to common questions about LogoPicture AI
                   </h2>
                   <Image
-                    src="/faq.png"
+                    src={cdn("/faq.png")}
                     alt="Optical Illusion FAQ"
                     width="500"
                     height="500"
@@ -564,7 +565,7 @@ export default function Home() {
                       <AccordionContent className="text-xl">
                         Pictures are generated within a few minutes. You will
                         see the results in the gallery. You will also receive an
-                        email once the pictures are ready.
+                        email once the pictures are ready.-
                       </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-4">
