@@ -266,13 +266,13 @@ const Card = ({
           ${price}
         </div>
       </div>
-      <div className="pb-6">
+      <div className="pb-6 text-center">
         <Button
           variant="secondary"
           asChild
-          className="text-xl rounded-lg border border-black hover:bg-main-grad"
+          className="text-xl rounded-lg border border-black bg-main-grad hover:text-white"
         >
-          <Link href={url}>Get Started</Link>
+          <Link href={url}>Redesign Logo →</Link>
         </Button>
         <p className="pt-4 pb-4">One-time payment</p>
       </div>
@@ -342,7 +342,7 @@ export default function Home() {
                     element?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
-                  Redesign your logo
+                  Redesign your logo →
                 </Button>
               </div>
 
@@ -372,14 +372,15 @@ export default function Home() {
                         // style="background: linear-gradient(90deg, #148DFC -0.55%, #32A1FD 22.86%, #4FB5FE 48.36%, #6DC8FE 73.33%, #8ADCFF 99.34%)"
                       ></div>
                     </div>
-                    <Image
+                    {/* <Image
                       className="relative w-full h-auto mx-auto filter drop-shadow-lg scale-110"
                       src={cdn("/lp-upload.gif")}
                       alt="Upload Logo"
                       width="800"
                       height="800"
                       loading="lazy"
-                    />
+                    /> */}
+                    <p className="text-[100px] text-center">📤</p>
                   </div>
 
                   <div className="mt-6 md:mt-10 text-left sm:text-center">
@@ -401,14 +402,15 @@ export default function Home() {
                         // style="background: linear-gradient(90deg, #148DFC -0.55%, #32A1FD 22.86%, #4FB5FE 48.36%, #6DC8FE 73.33%, #8ADCFF 99.34%)"
                       ></div>
                     </div>
-                    <Image
+                    {/* <Image
                       className="relative w-full h-auto mx-auto filter drop-shadow-lg scale-110"
                       src={cdn("/lp-pick.gif")}
                       alt="Predefined AI prompts for logo art"
                       width="800"
                       height="800"
                       loading="lazy"
-                    />
+                    /> */}
+                    <p className="text-[100px] text-center">🏔️</p>
                   </div>
 
                   <div className="mt-6 md:mt-10 text-left sm:text-center">
@@ -430,14 +432,15 @@ export default function Home() {
                         // style="background: linear-gradient(90deg, #148DFC -0.55%, #32A1FD 22.86%, #4FB5FE 48.36%, #6DC8FE 73.33%, #8ADCFF 99.34%)"
                       ></div>
                     </div>
-                    <Image
+                    {/* <Image
                       className="relative w-full h-auto mx-auto filter drop-shadow-lg scale-110"
                       src={cdn("/lp-gallery.gif")}
                       alt="Optical Illusion Art Gallery"
                       width="800"
                       height="800"
                       loading="lazy"
-                    />
+                    /> */}
+                    <p className="text-[100px] text-center">🖼️</p>
                   </div>
 
                   <div className="mt-6 md:mt-10 lg:mt-6 text-left sm:text-center">
@@ -470,6 +473,16 @@ export default function Home() {
                   to our predefined styles. You can also create your own style
                   by entering a prompt.
                 </p>
+                <Button
+                  className="inline-flex items-center px-4 sm:px-8 py-4 sm:py-8 mt-4 sm:text-2xl font-semibold text-white bg-black transition-all duration-200 rounded-xl lg:mt-16"
+                  role="button"
+                  onClick={() => {
+                    const element = document.getElementById("pricing");
+                    element?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
+                  Redesign your logo →
+                </Button>
               </div>
             </div>
           </div>
